@@ -20,6 +20,8 @@
         <vaadin.cdi.version>1.0.3</vaadin.cdi.version>
 
         <shika.kami.version>1.0.0-SNAPSHOT</shika.kami.version>
+
+        <tomcat.plugin.version>2.2</tomcat.plugin.version>
     </properties>
 
     <repositories>
@@ -78,6 +80,17 @@
                             <artifactId>shika-kami</artifactId>
                         </overlay>
                     </overlays>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>${tomcat.plugin.version}</version>
+                <configuration>
+                    <url>http://tomee:8080/manager/text</url>
+                    <username>admin</username>
+                    <password>admin</password>
+                    <path>/torii</path>
                 </configuration>
             </plugin>
         </plugins>
