@@ -14,7 +14,7 @@ public class LoginView extends VerticalLayout implements View {
 
     private static final String FLD_USER_CAPTION = "User";
     private static final String FLD_PASSWORD_CAPTION = "Password";
-    private static final String BTN_LOGIN_CAPTION = "Login";
+    private static final String BTN_LOGIN_CAPTION = "Log in";
 
     private final TextField fldUser;
     private final PasswordField fldPassword;
