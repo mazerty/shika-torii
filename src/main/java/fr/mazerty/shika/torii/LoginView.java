@@ -1,6 +1,7 @@
 package fr.mazerty.shika.torii;
 
 import com.vaadin.cdi.CDIView;
+import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.event.ShortcutAction;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
@@ -16,17 +17,27 @@ public class LoginView extends VerticalLayout implements View {
     private static final String FLD_PASSWORD_CAPTION = "Password";
     private static final String BTN_LOGIN_CAPTION = "Log in";
 
-    private final TextField fldEmail;
-    private final PasswordField fldPassword;
+    private final Field fldEmail;
+    private final Field fldPassword;
     private final Button btnLogin;
 
     public LoginView() {
-        fldEmail = new TextField(FLD_EMAIL_CAPTION);
-        fldPassword = new PasswordField(FLD_PASSWORD_CAPTION);
+        MyBeanFieldGroup<User> mbfg = new MyBeanFieldGroup<>(User.class);
+
+        fldEmail = mbfg.buildAndBind(FLD_EMAIL_CAPTION, "email", MyTextField.class);
+        fldPassword = mbfg.buildAndBind(FLD_PASSWORD_CAPTION, "password", MyPasswordField.class);
 
         btnLogin = new Button(BTN_LOGIN_CAPTION);
         btnLogin.setClickShortcut(ShortcutAction.KeyCode.ENTER);
         btnLogin.addStyleName(ValoTheme.BUTTON_PRIMARY);
+        btnLogin.addClickListener(event -> {
+            try {
+                mbfg.commit();
+                User bean = mbfg.getItemDataSource().getBean();
+            } catch (FieldGroup.CommitException e) {
+                e.printStackTrace();
+            }
+        });
 
         FormLayout formLayout = new FormLayout(fldEmail, fldPassword, btnLogin);
         formLayout.setMargin(true);
