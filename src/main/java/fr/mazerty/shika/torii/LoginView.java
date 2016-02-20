@@ -3,6 +3,10 @@ package fr.mazerty.shika.torii;
 import com.vaadin.cdi.CDIView;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
+import fr.mazerty.shika.ishi.MyBeanFieldGroup;
+import fr.mazerty.shika.ishi.MyPasswordField;
+import fr.mazerty.shika.ishi.MyTextField;
+import fr.mazerty.shika.ishi.MyView;
 import javaslang.control.Try;
 
 import javax.inject.Inject;

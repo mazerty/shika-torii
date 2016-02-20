@@ -3,6 +3,7 @@ package fr.mazerty.shika.torii;
 import com.vaadin.cdi.CDIView;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
+import fr.mazerty.shika.ishi.MyView;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 
