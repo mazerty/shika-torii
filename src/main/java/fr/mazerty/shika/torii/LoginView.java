@@ -1,15 +1,19 @@
 package fr.mazerty.shika.torii;
 
 import com.vaadin.cdi.CDIView;
-import com.vaadin.data.fieldgroup.FieldGroup;
-import com.vaadin.event.ShortcutAction;
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
-import com.vaadin.ui.themes.ValoTheme;
+import javaslang.control.Try;
+
+import javax.inject.Inject;
+
+import static com.vaadin.event.ShortcutAction.KeyCode.ENTER;
+import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
+import static com.vaadin.ui.Notification.Type.ERROR_MESSAGE;
+import static com.vaadin.ui.themes.ValoTheme.BUTTON_PRIMARY;
 
 @CDIView(LoginView.VIEW_NAME)
-public class LoginView extends VerticalLayout implements View {
+public class LoginView extends MyView {
 
     public static final String VIEW_NAME = "login";
 
@@ -21,23 +25,23 @@ public class LoginView extends VerticalLayout implements View {
     private final Field fldPassword;
     private final Button btnLogin;
 
-    public LoginView() {
-        MyBeanFieldGroup<User> mbfg = new MyBeanFieldGroup<>(User.class);
+    @Inject
+    private Session session;
 
-        fldEmail = mbfg.buildAndBind(FLD_EMAIL_CAPTION, "email", MyTextField.class);
-        fldPassword = mbfg.buildAndBind(FLD_PASSWORD_CAPTION, "password", MyPasswordField.class);
+    public LoginView() {
+        MyBeanFieldGroup<User> bfg = new MyBeanFieldGroup<>(User.class);
+
+        fldEmail = bfg.buildAndBind(FLD_EMAIL_CAPTION, "email", MyTextField.class);
+        fldPassword = bfg.buildAndBind(FLD_PASSWORD_CAPTION, "password", MyPasswordField.class);
 
         btnLogin = new Button(BTN_LOGIN_CAPTION);
-        btnLogin.setClickShortcut(ShortcutAction.KeyCode.ENTER);
-        btnLogin.addStyleName(ValoTheme.BUTTON_PRIMARY);
-        btnLogin.addClickListener(event -> {
-            try {
-                mbfg.commit();
-                User bean = mbfg.getItemDataSource().getBean();
-            } catch (FieldGroup.CommitException e) {
-                e.printStackTrace();
-            }
-        });
+        btnLogin.setClickShortcut(ENTER);
+        btnLogin.addStyleName(BUTTON_PRIMARY);
+        btnLogin.addClickListener(event -> Try
+                .of(bfg::getBean)
+                .andThenTry(session::login)
+                .onFailure(e -> Notification.show(e.getMessage(), ERROR_MESSAGE))
+                .andThen(() -> navigateTo(MainView.VIEW_NAME)));
 
         FormLayout formLayout = new FormLayout(fldEmail, fldPassword, btnLogin);
         formLayout.setMargin(true);
@@ -47,7 +51,7 @@ public class LoginView extends VerticalLayout implements View {
 
         setSizeFull();
         addComponent(panel);
-        setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
+        setComponentAlignment(panel, MIDDLE_CENTER);
     }
 
     @Override
