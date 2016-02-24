@@ -7,21 +7,21 @@ import java.io.Serializable;
 @SessionScoped
 public class Session implements Serializable {
 
-    private boolean loggedIn;
+    private User loggedUser;
 
     @Inject
     private UserService userService;
 
     public boolean isLoggedIn() {
-        return loggedIn;
+        return loggedUser != null;
     }
 
     public void logOut() {
-        loggedIn = false;
+        loggedUser = null;
     }
 
     public void login(User user) throws Exception {
-        loggedIn = userService.isAuthorized(user);
+        loggedUser = userService.isAuthorized(user);
     }
 
 }
