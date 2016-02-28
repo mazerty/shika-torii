@@ -1,5 +1,6 @@
 package fr.mazerty.shika.torii;
 
+import com.vaadin.annotations.PreserveOnRefresh;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.cdi.CDIUI;
@@ -14,6 +15,7 @@ import javax.inject.Inject;
 @CDIUI("")
 @Theme("mytheme")
 @Title("Torii")
+@PreserveOnRefresh
 public class MyUI extends UI {
 
     @Inject
