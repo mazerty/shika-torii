@@ -20,8 +20,8 @@ public class Session implements Serializable {
         loggedUser = null;
     }
 
-    public void login(User user) throws Exception {
-        loggedUser = userService.isAuthorized(user);
+    public void login(User user) throws AuthenticationFailure {
+        loggedUser = userService.authenticate(user);
     }
 
 }

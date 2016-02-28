@@ -4,7 +4,7 @@ public class User {
 
     private Integer id;
     private String email;
-    private String password;
+    private String password = "";
 
     public Integer getId() {
         return id;

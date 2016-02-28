@@ -5,7 +5,8 @@
     <select id="selectByEmailAndPassword" resultType="fr.mazerty.shika.torii.User">
         SELECT
             id,
-            email
+            email,
+            password
         FROM torii.t_user
         WHERE email = #{email}
     </select>
