@@ -4,7 +4,6 @@ import com.vaadin.cdi.CDIView;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import fr.mazerty.shika.ishi.MyBeanFieldGroup;
-import fr.mazerty.shika.ishi.MyPasswordField;
 import fr.mazerty.shika.ishi.MyTextField;
 import fr.mazerty.shika.ishi.MyView;
 import javaslang.control.Try;
@@ -36,7 +35,7 @@ public class LoginView extends MyView {
         MyBeanFieldGroup<User> bfg = new MyBeanFieldGroup<>(User.class);
 
         fldEmail = bfg.buildAndBind(FLD_EMAIL_CAPTION, "email", MyTextField.class);
-        fldPassword = bfg.buildAndBind(FLD_PASSWORD_CAPTION, "password", MyPasswordField.class);
+        fldPassword = bfg.buildAndBind(FLD_PASSWORD_CAPTION, "password", PasswordField.class);
 
         btnLogin = new Button(BTN_LOGIN_CAPTION);
         btnLogin.setClickShortcut(ENTER);
@@ -44,8 +43,9 @@ public class LoginView extends MyView {
         btnLogin.addClickListener(event -> Try
                 .of(bfg::getBean)
                 .andThenTry(session::login)
+                .andThen(() -> navigateTo(MainView.VIEW_NAME))
                 .onFailure(e -> Notification.show(e.getMessage(), ERROR_MESSAGE))
-                .andThen(() -> navigateTo(MainView.VIEW_NAME)));
+        );
 
         FormLayout formLayout = new FormLayout(fldEmail, fldPassword, btnLogin);
         formLayout.setMargin(true);
