@@ -1,5 +1,8 @@
 package fr.mazerty.shika.torii;
 
+import fr.mazerty.shika.ishi.AuthenticationFailure;
+import fr.mazerty.shika.ishi.User;
+import fr.mazerty.shika.ishi.UserService;
 import org.mindrot.jbcrypt.BCrypt;
 import org.mybatis.cdi.Mapper;
 
