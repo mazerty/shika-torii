@@ -1,5 +1,6 @@
 package fr.mazerty.shika.torii;
 
+import fr.mazerty.shika.ishi.Application;
 import fr.mazerty.shika.ishi.AuthenticationFailure;
 import fr.mazerty.shika.ishi.User;
 import fr.mazerty.shika.ishi.UserService;
@@ -7,18 +8,23 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.mybatis.cdi.Mapper;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 public class UserServiceImpl implements UserService {
 
     private static final String DUMMY_HASH = "$2a$13$byD4Ftv39Z76hUfd01URsePSdaV722c7J7NcLfs6o3KdJsAwHhEjq";
 
+    @Named
     @Inject
+    private Application application;
+
     @Mapper
+    @Inject
     private UserDao userDao;
 
     @Override
     public User authenticate(User user) throws AuthenticationFailure {
-        User match = userDao.selectByEmailAndPassword(user);
+        User match = userDao.selectByEmailAndApplication(user, application);
         if (match != null) {
             if (BCrypt.checkpw(user.getPassword(), match.getPassword())) {
                 return match;

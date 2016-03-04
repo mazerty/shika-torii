@@ -11,5 +11,6 @@
     </environments>
     <mappers>
         <mapper resource="dao/userDao.xml"/>
+        <mapper resource="dao/applicationDao.xml"/>
     </mappers>
 </configuration>
