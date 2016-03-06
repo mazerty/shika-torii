@@ -1,10 +1,10 @@
-package fr.mazerty.shika.torii;
+package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.cdi.CDIView;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
-import fr.mazerty.shika.ishi.MyUI;
-import fr.mazerty.shika.ishi.MyView;
+import fr.mazerty.shika.ishi.vaadin.MyUI;
+import fr.mazerty.shika.ishi.vaadin.MyView;
 
 import static com.vaadin.ui.Alignment.MIDDLE_CENTER;
 

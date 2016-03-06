@@ -1,4 +1,4 @@
-package fr.mazerty.shika.torii;
+package fr.mazerty.shika.torii.cdi;
 
 import javax.enterprise.inject.Produces;
 
