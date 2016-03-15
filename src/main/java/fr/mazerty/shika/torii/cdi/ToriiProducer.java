@@ -8,7 +8,7 @@ public class ToriiProducer implements SpecificProducer {
 
     @Produces
     @Override
-    public String getApplication() {
+    public String getApplicationName() {
         return "torii";
     }
 
