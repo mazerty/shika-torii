@@ -1,13 +1,13 @@
 package fr.mazerty.shika.torii.cdi;
 
+import fr.mazerty.shika.ishi.cdi.SpecificProducer;
+
 import javax.enterprise.inject.Produces;
 
-/**
- * Producer de la String nommant l'application (utilisée dans UserServiceImpl)
- */
-public class ApplicationProducer { // TODO extends ou implements
+public class ToriiProducer implements SpecificProducer {
 
     @Produces
+    @Override
     public String getApplication() {
         return "torii";
     }

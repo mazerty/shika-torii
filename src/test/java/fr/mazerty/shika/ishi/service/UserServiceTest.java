@@ -1,7 +1,7 @@
 package fr.mazerty.shika.ishi.service;
 
 import fr.mazerty.shika.ishi.bean.User;
-import fr.mazerty.shika.ishi.cdi.DSLContextProducer;
+import fr.mazerty.shika.ishi.cdi.CommonProducer;
 import fr.mazerty.shika.ishi.dao.MyDao;
 import fr.mazerty.shika.ishi.dao.UserDao;
 import fr.mazerty.shika.ishi.dao.UserDaoImpl;
@@ -25,7 +25,7 @@ public class UserServiceTest {
     @Deployment
     public static WebArchive deployment() {
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(User.class, DSLContextProducer.class, MyDao.class, UserDao.class, UserDaoImpl.class)
+                .addClasses(User.class, CommonProducer.class, MyDao.class, UserDao.class, UserDaoImpl.class)
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"))
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"))
                 .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("org.jooq:jooq").withTransitivity().asFile());
