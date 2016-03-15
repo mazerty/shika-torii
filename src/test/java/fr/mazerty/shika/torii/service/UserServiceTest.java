@@ -1,4 +1,4 @@
-package fr.mazerty.shika.ishi.service;
+package fr.mazerty.shika.torii.service;
 
 import fr.mazerty.shika.ishi.bean.User;
 import fr.mazerty.shika.ishi.cdi.CommonProducer;
@@ -23,7 +23,7 @@ public class UserServiceTest {
     private UserDao userDao;
 
     @Deployment
-    public static WebArchive deployment() {
+    public static WebArchive deployment() { // TODO factoriser
         return ShrinkWrap.create(WebArchive.class)
                 .addClasses(User.class, CommonProducer.class, MyDao.class, UserDao.class, UserDaoImpl.class)
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"))
