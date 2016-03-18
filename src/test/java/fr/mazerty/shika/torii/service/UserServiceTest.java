@@ -1,10 +1,7 @@
 package fr.mazerty.shika.torii.service;
 
 import fr.mazerty.shika.ishi.bean.User;
-import fr.mazerty.shika.ishi.cdi.CommonProducer;
-import fr.mazerty.shika.ishi.dao.MyDao;
 import fr.mazerty.shika.ishi.dao.UserDao;
-import fr.mazerty.shika.ishi.dao.UserDaoImpl;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -25,7 +22,7 @@ public class UserServiceTest {
     @Deployment
     public static WebArchive deployment() { // TODO factoriser
         return ShrinkWrap.create(WebArchive.class)
-                .addClasses(User.class, CommonProducer.class, MyDao.class, UserDao.class, UserDaoImpl.class)
+                .addPackages(true, "fr.mazerty.shika")
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/beans.xml"))
                 .addAsWebInfResource(new File("src/main/webapp/WEB-INF/web.xml"))
                 .addAsLibraries(Maven.resolver().loadPomFromFile("pom.xml").resolve("org.jooq:jooq").withTransitivity().asFile());
