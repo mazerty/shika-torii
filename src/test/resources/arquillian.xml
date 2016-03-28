@@ -3,7 +3,7 @@
             xsi:schemaLocation="http://jboss.org/schema/arquillian http://www.jboss.org/schema/arquillian/arquillian_1_0.xsd">
     <container qualifier="default" default="true">
         <configuration>
-            <property name="host">testtomee</property>
+            <property name="host">tomeetest</property>
             <property name="user">admin</property>
             <property name="pass">admin</property>
         </configuration>
