@@ -16,7 +16,6 @@
     </parent>
 
     <properties>
-        <tomcat.context.path>/torii</tomcat.context.path>
         <dbmaintain.schema.names>torii</dbmaintain.schema.names>
     </properties>
 
