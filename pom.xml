@@ -16,7 +16,7 @@
     </parent>
 
     <properties>
-        <dbmaintain.schema.names>torii</dbmaintain.schema.names>
+        <flyway.schema.name>torii</flyway.schema.name>
     </properties>
 
 </project>
