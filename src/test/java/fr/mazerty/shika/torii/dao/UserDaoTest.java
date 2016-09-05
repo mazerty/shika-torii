@@ -6,7 +6,7 @@ import fr.mazerty.shika.ishi.dao.jooq.Tables;
 import fr.mazerty.shika.ishi.dao.jooq.tables.records.TApplicationRecord;
 import fr.mazerty.shika.ishi.dao.jooq.tables.records.TUserApplicationRecord;
 import fr.mazerty.shika.ishi.dao.jooq.tables.records.TUserRecord;
-import fr.mazerty.shika.ishi.test.MyDaoTest;
+import fr.mazerty.shika.n.MyDaoTest;
 import org.junit.Before;
 import org.junit.Test;
 
