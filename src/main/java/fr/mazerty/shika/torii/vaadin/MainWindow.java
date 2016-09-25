@@ -9,12 +9,18 @@ import fr.mazerty.shika.ishi.vaadin.LoginView;
 import fr.mazerty.shika.ishi.vaadin.MyGrid;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
 
+import javax.inject.Inject;
+
 public class MainWindow extends MyWindow {
+
+    @Inject
+    private AddWindow addWindow;
 
     public MainWindow() {
         super("Users");
 
         Button add = new Button("Add");
+        add.addClickListener(event -> show(addWindow));
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(add);
         horizontalLayout.setHeightUndefined();
