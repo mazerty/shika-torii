@@ -1,14 +1,11 @@
 package fr.mazerty.shika.torii.vaadin;
 
-import com.vaadin.ui.Button;
 import com.vaadin.ui.FormLayout;
 import fr.mazerty.shika.ishi.bean.User;
 import fr.mazerty.shika.ishi.vaadin.MyBeanFieldGroup;
+import fr.mazerty.shika.ishi.vaadin.MyButton;
 import fr.mazerty.shika.ishi.vaadin.MyTextField;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
-
-import static com.vaadin.event.ShortcutAction.KeyCode.ENTER;
-import static com.vaadin.ui.themes.ValoTheme.BUTTON_PRIMARY;
 
 public class AddWindow extends MyWindow {
 
@@ -22,9 +19,8 @@ public class AddWindow extends MyWindow {
 
         email = bfg.buildAndBind("Email", "email", MyTextField.class);
 
-        Button add = new Button("Add");
-        add.addStyleName(BUTTON_PRIMARY);
-        add.setClickShortcut(ENTER);
+        MyButton add = new MyButton("Add");
+        add.setPrimary();
         add.addClickListener(event -> close());
 
         FormLayout formLayout = new FormLayout(email, add);
