@@ -15,7 +15,7 @@ public class MainView extends MyView {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        addWindow(mainWindow);
+        show(mainWindow);
     }
 
 }
