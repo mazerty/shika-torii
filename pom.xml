@@ -17,7 +17,7 @@
 
     <properties>
         <wildfly.context.path>torii</wildfly.context.path>
-        <flyway.schema.name>torii</flyway.schema.name>
+        <flyway.schemas>torii</flyway.schemas>
     </properties>
 
 </project>
