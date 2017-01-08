@@ -1,12 +1,11 @@
 package fr.mazerty.shika.torii.dao;
 
-import fr.mazerty.shika.ishi.bean.User;
-import fr.mazerty.shika.ishi.dao.UserDao;
-import fr.mazerty.shika.ishi.dao.jooq.Tables;
-import fr.mazerty.shika.ishi.dao.jooq.tables.records.TApplicationRecord;
-import fr.mazerty.shika.ishi.dao.jooq.tables.records.TUserApplicationRecord;
-import fr.mazerty.shika.ishi.dao.jooq.tables.records.TUserRecord;
 import fr.mazerty.shika.n.MyDaoTest;
+import fr.mazerty.shika.torii.bean.User;
+import fr.mazerty.shika.torii.dao.jooq.Tables;
+import fr.mazerty.shika.torii.dao.jooq.tables.records.TApplicationRecord;
+import fr.mazerty.shika.torii.dao.jooq.tables.records.TUserApplicationRecord;
+import fr.mazerty.shika.torii.dao.jooq.tables.records.TUserRecord;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,11 +1,11 @@
 package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.ui.FormLayout;
-import fr.mazerty.shika.ishi.bean.User;
 import fr.mazerty.shika.ishi.vaadin.MyBeanFieldGroup;
 import fr.mazerty.shika.ishi.vaadin.MyButton;
 import fr.mazerty.shika.ishi.vaadin.MyTextField;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
+import fr.mazerty.shika.torii.bean.User;
 
 public class AddWindow extends MyWindow {
 

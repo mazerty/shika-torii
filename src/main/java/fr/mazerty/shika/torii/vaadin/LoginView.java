@@ -6,17 +6,20 @@ import fr.mazerty.shika.ishi.vaadin.MyView;
 
 import javax.inject.Inject;
 
-@CDIView(MainView.MAIN_VIEW_NAME)
-public class MainView extends MyView {
+/**
+ * Cette vue est automatiquement présentée lors de la connexion à l'application
+ */
+@CDIView(LoginView.VIEW_NAME)
+public class LoginView extends MyView {
 
-    static final String MAIN_VIEW_NAME = "main";
+    static final String VIEW_NAME = "login";
 
     @Inject
-    private MainWindow mainWindow;
+    private LoginWindow loginWindow;
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        show(mainWindow);
+        show(loginWindow);
     }
 
 }

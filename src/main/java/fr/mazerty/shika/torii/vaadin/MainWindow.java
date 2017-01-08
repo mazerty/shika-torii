@@ -4,10 +4,9 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.VerticalLayout;
-import fr.mazerty.shika.ishi.bean.User;
-import fr.mazerty.shika.ishi.vaadin.LoginView;
 import fr.mazerty.shika.ishi.vaadin.MyGrid;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
+import fr.mazerty.shika.torii.bean.User;
 
 import javax.inject.Inject;
 

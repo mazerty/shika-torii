@@ -16,6 +16,9 @@
     </parent>
 
     <properties>
+        <jooq.codegen.schema>torii</jooq.codegen.schema>
+        <jooq.codegen.package>fr.mazerty.shika.torii.dao.jooq</jooq.codegen.package>
+
         <wildfly.context.path>torii</wildfly.context.path>
         <flyway.schemas>torii</flyway.schemas>
     </properties>
