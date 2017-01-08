@@ -11,16 +11,164 @@
 
     <parent>
         <groupId>fr.mazerty</groupId>
-        <artifactId>shika-kyoudai</artifactId>
+        <artifactId>core</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <jooq.codegen.schema>torii</jooq.codegen.schema>
-        <jooq.codegen.package>fr.mazerty.shika.torii.dao.jooq</jooq.codegen.package>
+    <profiles>
+        <profile>
+            <id>database-default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <database.host>postgresql</database.host>
+            </properties>
+        </profile>
+        <profile>
+            <id>database-test</id>
+            <properties>
+                <database.host>postgresqltest</database.host>
+            </properties>
+        </profile>
+    </profiles>
 
-        <wildfly.context.path>torii</wildfly.context.path>
-        <flyway.schemas>torii</flyway.schemas>
+    <properties>
+        <shika.kami.version>1.0.0-SNAPSHOT</shika.kami.version>
+        <shika.ishi.version>1.0.0-SNAPSHOT</shika.ishi.version>
+        <arquillian.version>1.0.0-SNAPSHOT</arquillian.version>
+
+        <database.url>jdbc:postgresql://${database.host}:5432/postgres</database.url>
+        <database.username>postgres</database.username>
+
+        <wildfly.hostname>wildfly</wildfly.hostname>
+        <wildfly.username>admin</wildfly.username>
+        <wildfly.password>admin</wildfly.password>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>fr.mazerty</groupId>
+            <artifactId>shika-kami</artifactId>
+            <version>${shika.kami.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>fr.mazerty</groupId>
+            <artifactId>shika-ishi</artifactId>
+            <version>${shika.ishi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.mazerty</groupId>
+            <artifactId>arquillian</artifactId>
+            <version>${arquillian.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client-compiled</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-cdi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-themes</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.javaslang</groupId>
+            <artifactId>javaslang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.svenkubiak</groupId>
+            <artifactId>jBCrypt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wildfly.arquillian</groupId>
+            <artifactId>wildfly-arquillian-container-remote</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <groupId>fr.mazerty</groupId>
+                            <artifactId>shika-kami</artifactId>
+                        </overlay>
+                    </overlays>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <configuration>
+                    <hostname>${wildfly.hostname}</hostname>
+                    <username>${wildfly.username}</username>
+                    <password>${wildfly.password}</password>
+                    <name>torii.war</name>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <configuration>
+                    <!-- flyway ne permet pas de mettre à jour deux bases de données différentes avec les mêmes fichiers
+                         du coup on est obligé de l'exécuter deux fois avec des profils différents -->
+                    <driver>org.postgresql.Driver</driver>
+                    <url>${database.url}</url>
+                    <user>${database.username}</user>
+                    <schemas>torii</schemas>
+                    <locations>
+                        <location>filesystem:src/main/sql</location>
+                    </locations>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <configuration>
+                    <jdbc>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>${database.url}</url>
+                        <user>${database.username}</user>
+                    </jdbc>
+                    <generator>
+                        <database>
+                            <name>org.jooq.util.postgres.PostgresDatabase</name>
+                            <includes>.*</includes>
+                            <excludes>schema_version</excludes>
+                            <inputSchema>torii</inputSchema>
+                        </database>
+                        <target>
+                            <packageName>fr.mazerty.shika.torii.dao.jooq</packageName>
+                            <directory>src/main/java</directory>
+                        </target>
+                    </generator>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
