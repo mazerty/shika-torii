@@ -5,16 +5,11 @@ import fr.mazerty.shika.torii.dao.jooq.Tables;
 import fr.mazerty.shika.torii.dao.jooq.tables.TApplication;
 import fr.mazerty.shika.torii.dao.jooq.tables.TUser;
 import fr.mazerty.shika.torii.dao.jooq.tables.TUserApplication;
-import org.jooq.DSLContext;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
 @ApplicationScoped
-public class UserDaoImpl implements UserDao {
-
-    @Inject
-    protected DSLContext dslContext;
+public class UserDaoImpl extends JooqDao implements UserDao {
 
     @Override
     public User selectByEmailAndApplication(User user, String application) {
