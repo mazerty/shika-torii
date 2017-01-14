@@ -16,16 +16,14 @@ public class JooqProducer {
     private static final String DATASOURCE_JNDI_NAME = "java:/comp/env/jdbc/postgresql";
 
     /**
-     * @return contexte utilisé par jOOQ pour l'accès à la base de données
+     * @return jooq context to operate the database
      */
     @ApplicationScoped
     @Produces
     public DSLContext produce() throws NamingException {
-        DefaultConfiguration configuration = new DefaultConfiguration();
-        configuration.set(SQLDialect.POSTGRES_9_5);
-        configuration.set((DataSource) new InitialContext().lookup(DATASOURCE_JNDI_NAME));
-
-        return DSL.using(configuration);
+        return DSL.using(new DefaultConfiguration()
+                .set(SQLDialect.POSTGRES_9_5)
+                .set((DataSource) new InitialContext().lookup(DATASOURCE_JNDI_NAME)));
     }
 
 }
