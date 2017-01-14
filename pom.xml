@@ -28,6 +28,15 @@
                 <database.host>postgresqltest</database.host>
             </properties>
         </profile>
+
+        <!-- these profiles are used for jooq code generation, linking a database schema with a target java package for the generated code -->
+        <profile>
+            <id>jooq-codegen-torii</id>
+            <properties>
+                <input.schema>torii</input.schema>
+                <package.name>fr.mazerty.shika.torii.dao.jooq</package.name>
+            </properties>
+        </profile>
     </profiles>
 
     <properties>
@@ -97,6 +106,7 @@
     <build>
         <plugins>
             <plugin>
+                <!-- includes vaadin's theme by way of the overlay system -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
@@ -115,15 +125,15 @@
                     <hostname>${wildfly.hostname}</hostname>
                     <username>${wildfly.username}</username>
                     <password>${wildfly.password}</password>
-                    <name>torii.war</name>
+                    <name>torii.war</name><!-- so that the deployed url ends in /torii -->
                 </configuration>
             </plugin>
             <plugin>
+                <!-- flyway doesn't allow to update two different databases with the same files in a single run
+                     so we have to run the plugin goals twice with different profiles -->
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <configuration>
-                    <!-- flyway ne permet pas de mettre à jour deux bases de données différentes avec les mêmes fichiers
-                         du coup on est obligé de l'exécuter deux fois avec des profils différents -->
                     <driver>org.postgresql.Driver</driver>
                     <url>${database.url}</url>
                     <user>${database.username}</user>
@@ -134,6 +144,9 @@
                 </configuration>
             </plugin>
             <plugin>
+                <!-- this plugin is to be called during development only
+                     the generated code has to be versioned so that there's no delta between code and database
+                     see the profiles for the correspondence between database schema and target java package -->
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
                 <configuration>
@@ -147,10 +160,10 @@
                             <name>org.jooq.util.postgres.PostgresDatabase</name>
                             <includes>.*</includes>
                             <excludes>schema_version</excludes>
-                            <inputSchema>torii</inputSchema>
+                            <inputSchema>${input.schema}</inputSchema>
                         </database>
                         <target>
-                            <packageName>fr.mazerty.shika.torii.dao.jooq</packageName>
+                            <packageName>${package.name}</packageName>
                             <directory>src/main/java</directory>
                         </target>
                     </generator>
