@@ -3,6 +3,7 @@ package fr.mazerty.shika.torii.vaadin;
 import com.vaadin.ui.*;
 import fr.mazerty.shika.ishi.vaadin.MyBeanFieldGroup;
 import fr.mazerty.shika.ishi.vaadin.MyButton;
+import fr.mazerty.shika.ishi.vaadin.MyPasswordField;
 import fr.mazerty.shika.ishi.vaadin.MyTextField;
 import fr.mazerty.shika.torii.bean.User;
 
@@ -22,7 +23,7 @@ class MyLoginForm extends LoginForm {
 
     @Override
     protected PasswordField createPasswordField() {
-        return bfg.buildAndBind("Password", "password", PasswordField.class);
+        return bfg.buildAndBind("Password", "password", MyPasswordField.class);
     }
 
     @Override
