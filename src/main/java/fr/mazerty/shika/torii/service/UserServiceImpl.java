@@ -11,7 +11,6 @@ import javax.inject.Inject;
 @ApplicationScoped
 public class UserServiceImpl implements UserService {
 
-    // TODO : generate on startup
     private static final String DUMMY_HASH = "$2a$13$byD4Ftv39Z76hUfd01URsePSdaV722c7J7NcLfs6o3KdJsAwHhEjq";
 
     @Inject
