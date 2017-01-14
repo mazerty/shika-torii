@@ -9,7 +9,7 @@ import fr.mazerty.shika.torii.dao.jooq.tables.TUserApplication;
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
-public class UserDaoImpl extends JooqDao implements UserDao {
+public class JooqUserDao extends JooqDao implements UserDao {
 
     @Override
     public User selectByEmailAndApplication(User user, String application) {
