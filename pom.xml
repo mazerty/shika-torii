@@ -22,15 +22,7 @@
 
     <profiles>
         <profile>
-            <id>database-default</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <database.host>postgresql</database.host>
-            </properties>
-        </profile>
-        <profile>
+            <!-- in a development/test environment, activate this profile to interact with the test database instead of the regular one -->
             <id>database-test</id>
             <properties>
                 <database.host>postgresqltest</database.host>
@@ -43,6 +35,7 @@
         <shika.ishi.version>1.0.0-SNAPSHOT</shika.ishi.version>
         <arquillian.version>1.0.0-SNAPSHOT</arquillian.version>
 
+        <database.host>postgresql</database.host>
         <database.url>jdbc:postgresql://${database.host}:5432/postgres</database.url>
         <database.username>postgres</database.username>
 
