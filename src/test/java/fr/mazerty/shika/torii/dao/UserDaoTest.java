@@ -4,6 +4,7 @@ import fr.mazerty.arquillian.MyDaoTest;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.dao.jooq.Tables;
 import fr.mazerty.shika.torii.dao.jooq.tables.records.TUserRecord;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,14 +21,13 @@ public class UserDaoTest extends MyDaoTest {
 
     private static final String TITI_EMAIL = "titi@msn.com";
 
-    @Before
-    public void before() {
-        delete(Tables.T_USER);
-        insert(new TUserRecord(TOTO_ID, TOTO_EMAIL, TOTO_PASSWORD, TOTO_ADMIN));
-    }
-
     @Inject
     private UserDao userDao;
+
+    @Before
+    public void before() {
+        insert(new TUserRecord(TOTO_ID, TOTO_EMAIL, TOTO_PASSWORD, TOTO_ADMIN));
+    }
 
     @Test
     public void nominal() {
@@ -43,6 +43,11 @@ public class UserDaoTest extends MyDaoTest {
     @Test
     public void emailInconnu() {
         assertThat(userDao.selectByEmail(TITI_EMAIL)).isNull();
+    }
+
+    @After
+    public void after() {
+        delete(Tables.T_USER);
     }
 
 }
