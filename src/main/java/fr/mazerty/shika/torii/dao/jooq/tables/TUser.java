@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TUser extends TableImpl<TUserRecord> {
 
-    private static final long serialVersionUID = 1708938315;
+    private static final long serialVersionUID = -253545993;
 
     /**
      * The reference instance of <code>torii.t_user</code>
@@ -63,6 +63,11 @@ public class TUser extends TableImpl<TUserRecord> {
      * The column <code>torii.t_user.password</code>.
      */
     public final TableField<TUserRecord, String> PASSWORD = createField("password", org.jooq.impl.SQLDataType.CLOB.nullable(false), this, "");
+
+    /**
+     * The column <code>torii.t_user.admin</code>.
+     */
+    public final TableField<TUserRecord, Boolean> ADMIN = createField("admin", org.jooq.impl.SQLDataType.BOOLEAN.nullable(false), this, "");
 
     /**
      * Create a <code>torii.t_user</code> table reference

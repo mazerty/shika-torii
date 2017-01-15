@@ -4,16 +4,11 @@
 package fr.mazerty.shika.torii.dao.jooq;
 
 
-import fr.mazerty.shika.torii.dao.jooq.tables.TApplication;
 import fr.mazerty.shika.torii.dao.jooq.tables.TUser;
-import fr.mazerty.shika.torii.dao.jooq.tables.TUserApplication;
-import fr.mazerty.shika.torii.dao.jooq.tables.records.TApplicationRecord;
-import fr.mazerty.shika.torii.dao.jooq.tables.records.TUserApplicationRecord;
 import fr.mazerty.shika.torii.dao.jooq.tables.records.TUserRecord;
 
 import javax.annotation.Generated;
 
-import org.jooq.ForeignKey;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
 
@@ -41,33 +36,20 @@ public class Keys {
     // UNIQUE and PRIMARY KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final UniqueKey<TApplicationRecord> T_APPLICATION_PKEY = UniqueKeys0.T_APPLICATION_PKEY;
-    public static final UniqueKey<TApplicationRecord> T_APPLICATION_NAME_KEY = UniqueKeys0.T_APPLICATION_NAME_KEY;
     public static final UniqueKey<TUserRecord> T_USER_PKEY = UniqueKeys0.T_USER_PKEY;
     public static final UniqueKey<TUserRecord> T_USER_EMAIL_KEY = UniqueKeys0.T_USER_EMAIL_KEY;
-    public static final UniqueKey<TUserApplicationRecord> T_USER_APPLICATION_PKEY = UniqueKeys0.T_USER_APPLICATION_PKEY;
 
     // -------------------------------------------------------------------------
     // FOREIGN KEY definitions
     // -------------------------------------------------------------------------
 
-    public static final ForeignKey<TUserApplicationRecord, TUserRecord> T_USER_APPLICATION__T_USER_APPLICATION_USER_FK_FKEY = ForeignKeys0.T_USER_APPLICATION__T_USER_APPLICATION_USER_FK_FKEY;
-    public static final ForeignKey<TUserApplicationRecord, TApplicationRecord> T_USER_APPLICATION__T_USER_APPLICATION_APPLICATION_FK_FKEY = ForeignKeys0.T_USER_APPLICATION__T_USER_APPLICATION_APPLICATION_FK_FKEY;
 
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
 
     private static class UniqueKeys0 extends AbstractKeys {
-        public static final UniqueKey<TApplicationRecord> T_APPLICATION_PKEY = createUniqueKey(TApplication.T_APPLICATION, "t_application_pkey", TApplication.T_APPLICATION.ID);
-        public static final UniqueKey<TApplicationRecord> T_APPLICATION_NAME_KEY = createUniqueKey(TApplication.T_APPLICATION, "t_application_name_key", TApplication.T_APPLICATION.NAME);
         public static final UniqueKey<TUserRecord> T_USER_PKEY = createUniqueKey(TUser.T_USER, "t_user_pkey", TUser.T_USER.ID);
         public static final UniqueKey<TUserRecord> T_USER_EMAIL_KEY = createUniqueKey(TUser.T_USER, "t_user_email_key", TUser.T_USER.EMAIL);
-        public static final UniqueKey<TUserApplicationRecord> T_USER_APPLICATION_PKEY = createUniqueKey(TUserApplication.T_USER_APPLICATION, "t_user_application_pkey", TUserApplication.T_USER_APPLICATION.USER_FK, TUserApplication.T_USER_APPLICATION.APPLICATION_FK);
-    }
-
-    private static class ForeignKeys0 extends AbstractKeys {
-        public static final ForeignKey<TUserApplicationRecord, TUserRecord> T_USER_APPLICATION__T_USER_APPLICATION_USER_FK_FKEY = createForeignKey(fr.mazerty.shika.torii.dao.jooq.Keys.T_USER_PKEY, TUserApplication.T_USER_APPLICATION, "t_user_application__t_user_application_user_fk_fkey", TUserApplication.T_USER_APPLICATION.USER_FK);
-        public static final ForeignKey<TUserApplicationRecord, TApplicationRecord> T_USER_APPLICATION__T_USER_APPLICATION_APPLICATION_FK_FKEY = createForeignKey(fr.mazerty.shika.torii.dao.jooq.Keys.T_APPLICATION_PKEY, TUserApplication.T_USER_APPLICATION, "t_user_application__t_user_application_application_fk_fkey", TUserApplication.T_USER_APPLICATION.APPLICATION_FK);
     }
 }

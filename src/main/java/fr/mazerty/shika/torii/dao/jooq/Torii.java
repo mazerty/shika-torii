@@ -4,9 +4,7 @@
 package fr.mazerty.shika.torii.dao.jooq;
 
 
-import fr.mazerty.shika.torii.dao.jooq.tables.TApplication;
 import fr.mazerty.shika.torii.dao.jooq.tables.TUser;
-import fr.mazerty.shika.torii.dao.jooq.tables.TUserApplication;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +31,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Torii extends SchemaImpl {
 
-    private static final long serialVersionUID = 890461242;
+    private static final long serialVersionUID = -1025441296;
 
     /**
      * The reference instance of <code>torii</code>
@@ -41,19 +39,9 @@ public class Torii extends SchemaImpl {
     public static final Torii TORII = new Torii();
 
     /**
-     * The table <code>torii.t_application</code>.
-     */
-    public final TApplication T_APPLICATION = fr.mazerty.shika.torii.dao.jooq.tables.TApplication.T_APPLICATION;
-
-    /**
      * The table <code>torii.t_user</code>.
      */
     public final TUser T_USER = fr.mazerty.shika.torii.dao.jooq.tables.TUser.T_USER;
-
-    /**
-     * The table <code>torii.t_user_application</code>.
-     */
-    public final TUserApplication T_USER_APPLICATION = fr.mazerty.shika.torii.dao.jooq.tables.TUserApplication.T_USER_APPLICATION;
 
     /**
      * No further instances allowed
@@ -92,8 +80,6 @@ public class Torii extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
-            TApplication.T_APPLICATION,
-            TUser.T_USER,
-            TUserApplication.T_USER_APPLICATION);
+            TUser.T_USER);
     }
 }
