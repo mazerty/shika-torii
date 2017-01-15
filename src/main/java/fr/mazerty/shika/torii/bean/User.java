@@ -5,6 +5,7 @@ public class User {
     private Integer id;
     private String email;
     private String password;
+    private Boolean admin;
 
     public Integer getId() {
         return id;
@@ -28,6 +29,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 
 }

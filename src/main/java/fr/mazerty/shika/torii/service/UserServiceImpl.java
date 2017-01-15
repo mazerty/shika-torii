@@ -8,6 +8,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import static org.apache.commons.lang3.StringUtils.defaultString;
+
 @ApplicationScoped
 public class UserServiceImpl implements UserService {
 
@@ -18,19 +20,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User authenticate(User user) throws AuthenticationFailure {
-        // TODO
-        User match = userDao.selectByEmailAndApplication(user, "torii");
-        if (match != null) {
-            if (BCrypt.checkpw(user.getPassword(), match.getPassword())) {
-                return match;
+        // jbcrypt doesn't handle null strings very well so...
+        String userPassword = defaultString(user.getPassword());
+
+        User found = userDao.selectByEmail(user.getEmail());
+        if (found == null) {
+            // if no user has been found, we check the password against a dummy hash anyway so that there's no
+            // significant difference in response time that can be used to guess existing users in the database
+            BCrypt.checkpw(userPassword, DUMMY_HASH);
+            throw new AuthenticationFailure();
+        } else {
+            if (BCrypt.checkpw(userPassword, found.getPassword())) {
+                return found;
             } else {
                 throw new AuthenticationFailure();
             }
-        } else {
-            // il ne faut pas qu'il y ait de différence de temps de traitement entre une erreur liée au user
-            // et une erreur liée au password, donc on vérifie le password par rapport à un hash bidon
-            BCrypt.checkpw(user.getPassword(), DUMMY_HASH);
-            throw new AuthenticationFailure();
         }
     }
 
