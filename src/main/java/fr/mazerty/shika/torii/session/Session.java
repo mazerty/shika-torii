@@ -24,6 +24,7 @@ public class Session implements Serializable {
         loggedUser = null;
     }
 
+    // TODO
     public void login(User user) throws AuthenticationFailure {
         loggedUser = userService.authenticate(user);
     }
