@@ -4,6 +4,7 @@ import fr.mazerty.shika.ishi.vaadin.MyBeanFieldGroup;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.exception.AuthenticationFailure;
+import fr.mazerty.shika.torii.service.UserService;
 import fr.mazerty.shika.torii.session.Session;
 
 import javax.inject.Inject;
@@ -15,6 +16,8 @@ public class LoginWindow extends MyWindow {
 
     @Inject
     private Session session;
+    @Inject
+    private UserService userService;
 
     public LoginWindow() {
         super("Login");
@@ -24,7 +27,7 @@ public class LoginWindow extends MyWindow {
         loginForm = new MyLoginForm(bfg);
         loginForm.addLoginListener(event -> {
             try {
-                session.login(bfg.getBean());
+                session.login(userService.authenticate(bfg.getBean()));
                 navigateTo(MainView.MAIN_VIEW_NAME);
             } catch (AuthenticationFailure authenticationFailure) {
                 handleFailure(authenticationFailure);
