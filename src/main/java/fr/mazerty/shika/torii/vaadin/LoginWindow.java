@@ -3,6 +3,7 @@ package fr.mazerty.shika.torii.vaadin;
 import com.vaadin.ui.Notification;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
 import fr.mazerty.shika.torii.bean.User;
+import fr.mazerty.shika.torii.cdi.ResourceBundleWrapper;
 import fr.mazerty.shika.torii.service.UserService;
 import fr.mazerty.shika.torii.session.Session;
 
@@ -16,18 +17,20 @@ public class LoginWindow extends MyWindow {
     @Inject
     private Session session;
     @Inject
+    private ResourceBundleWrapper rbw;
+    @Inject
     private MyLoginForm loginForm;
     @Inject
     private UserService userService;
 
     @PostConstruct
     public void postConstruct() {
-        setCaption("Login");
+        setCaption(rbw.l("loginwindow.caption"));
 
         loginForm.addLoginListener(event -> {
             User match = userService.authenticate(loginForm.getBean());
             if (match == null) {
-                Notification.show("Wrong email or password", ERROR_MESSAGE);
+                Notification.show(rbw.l("loginwindow.error"), ERROR_MESSAGE);
             } else {
                 session.login(match);
                 navigateTo(MainView.MAIN_VIEW_NAME);

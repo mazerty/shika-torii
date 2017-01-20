@@ -16,6 +16,7 @@ public class AddWindow extends MyWindow {
 
     @PostConstruct
     public void postConstruct() {
+        // TODO i18n when moved to admin view
         setCaption("Add user");
 
         bfg = new MyBeanFieldGroup<>(User.class);

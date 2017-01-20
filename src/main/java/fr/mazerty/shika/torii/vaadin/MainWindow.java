@@ -18,6 +18,7 @@ public class MainWindow extends MyWindow {
 
     @PostConstruct
     public void postConstruct() {
+        // TODO : i18n when moved to admin view
         setCaption("Users");
 
         Button add = new Button("Add");
