@@ -4,7 +4,6 @@ import com.vaadin.ui.Notification;
 import fr.mazerty.shika.ishi.vaadin.MyBeanFieldGroup;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
 import fr.mazerty.shika.torii.bean.User;
-import fr.mazerty.shika.torii.exception.AuthenticationFailure;
 import fr.mazerty.shika.torii.service.UserService;
 import fr.mazerty.shika.torii.session.Session;
 
@@ -29,11 +28,12 @@ public class LoginWindow extends MyWindow {
 
         loginForm = new MyLoginForm(bfg);
         loginForm.addLoginListener(event -> {
-            try {
-                session.login(userService.authenticate(bfg.getBean()));
+            User match = userService.authenticate(bfg.getBean());
+            if (match == null) {
+                Notification.show("Wrong email or password", ERROR_MESSAGE);
+            } else {
+                session.login(match);
                 navigateTo(MainView.MAIN_VIEW_NAME);
-            } catch (AuthenticationFailure authenticationFailure) {
-                Notification.show(authenticationFailure.getMessage(), ERROR_MESSAGE);
             }
         });
 
