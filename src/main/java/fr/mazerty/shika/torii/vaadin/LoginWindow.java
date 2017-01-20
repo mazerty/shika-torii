@@ -1,7 +1,6 @@
 package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.ui.Notification;
-import fr.mazerty.shika.ishi.vaadin.MyBeanFieldGroup;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.service.UserService;
@@ -14,11 +13,10 @@ import static com.vaadin.ui.Notification.Type.ERROR_MESSAGE;
 
 public class LoginWindow extends MyWindow {
 
-    private MyBeanFieldGroup<User> bfg;
-    private MyLoginForm loginForm;
-
     @Inject
     private Session session;
+    @Inject
+    private MyLoginForm loginForm;
     @Inject
     private UserService userService;
 
@@ -26,11 +24,8 @@ public class LoginWindow extends MyWindow {
     public void postConstruct() {
         setCaption("Login");
 
-        bfg = new MyBeanFieldGroup<>(User.class);
-
-        loginForm = new MyLoginForm(bfg);
         loginForm.addLoginListener(event -> {
-            User match = userService.authenticate(bfg.getBean());
+            User match = userService.authenticate(loginForm.getBean());
             if (match == null) {
                 Notification.show("Wrong email or password", ERROR_MESSAGE);
             } else {
@@ -46,7 +41,7 @@ public class LoginWindow extends MyWindow {
 
     @Override
     protected void enter() {
-        bfg.setBean(new User());
+        loginForm.setBean(new User());
         loginForm.focus();
     }
 

@@ -7,13 +7,16 @@ import fr.mazerty.shika.ishi.vaadin.MyPasswordField;
 import fr.mazerty.shika.ishi.vaadin.MyTextField;
 import fr.mazerty.shika.torii.bean.User;
 
+import javax.annotation.PostConstruct;
+
 class MyLoginForm extends LoginForm {
 
     private MyBeanFieldGroup<User> bfg;
     private MyTextField email;
 
-    MyLoginForm(MyBeanFieldGroup<User> bfg) {
-        this.bfg = bfg;
+    @PostConstruct
+    public void postConstruct() {
+        bfg = new MyBeanFieldGroup<>(User.class);
     }
 
     @Override
@@ -46,6 +49,14 @@ class MyLoginForm extends LoginForm {
     @Override
     public void focus() {
         email.focus();
+    }
+
+    public User getBean() {
+        return bfg.getBean();
+    }
+
+    public void setBean(User bean) {
+        bfg.setBean(bean);
     }
 
 }
