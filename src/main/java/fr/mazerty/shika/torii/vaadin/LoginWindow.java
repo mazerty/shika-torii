@@ -1,5 +1,6 @@
 package fr.mazerty.shika.torii.vaadin;
 
+import com.vaadin.ui.Notification;
 import fr.mazerty.shika.ishi.vaadin.MyBeanFieldGroup;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
 import fr.mazerty.shika.torii.bean.User;
@@ -8,6 +9,8 @@ import fr.mazerty.shika.torii.service.UserService;
 import fr.mazerty.shika.torii.session.Session;
 
 import javax.inject.Inject;
+
+import static com.vaadin.ui.Notification.Type.ERROR_MESSAGE;
 
 public class LoginWindow extends MyWindow {
 
@@ -30,7 +33,7 @@ public class LoginWindow extends MyWindow {
                 session.login(userService.authenticate(bfg.getBean()));
                 navigateTo(MainView.MAIN_VIEW_NAME);
             } catch (AuthenticationFailure authenticationFailure) {
-                handleFailure(authenticationFailure);
+                Notification.show(authenticationFailure.getMessage(), ERROR_MESSAGE);
             }
         });
 
