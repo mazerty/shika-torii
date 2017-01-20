@@ -7,13 +7,16 @@ import fr.mazerty.shika.ishi.vaadin.MyTextField;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
 import fr.mazerty.shika.torii.bean.User;
 
+import javax.annotation.PostConstruct;
+
 public class AddWindow extends MyWindow {
 
-    private final MyBeanFieldGroup<User> bfg;
-    private final MyTextField email;
+    private MyBeanFieldGroup<User> bfg;
+    private MyTextField email;
 
-    public AddWindow() {
-        super("Add user");
+    @PostConstruct
+    public void postConstruct() {
+        setCaption("Add user");
 
         bfg = new MyBeanFieldGroup<>(User.class);
 

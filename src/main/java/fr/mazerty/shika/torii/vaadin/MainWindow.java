@@ -8,6 +8,7 @@ import fr.mazerty.shika.ishi.vaadin.MyGrid;
 import fr.mazerty.shika.ishi.vaadin.MyWindow;
 import fr.mazerty.shika.torii.bean.User;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 public class MainWindow extends MyWindow {
@@ -15,8 +16,9 @@ public class MainWindow extends MyWindow {
     @Inject
     private AddWindow addWindow;
 
-    public MainWindow() {
-        super("Users");
+    @PostConstruct
+    public void postConstruct() {
+        setCaption("Users");
 
         Button add = new Button("Add");
         add.addClickListener(event -> show(addWindow));

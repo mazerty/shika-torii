@@ -7,22 +7,24 @@ import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.service.UserService;
 import fr.mazerty.shika.torii.session.Session;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import static com.vaadin.ui.Notification.Type.ERROR_MESSAGE;
 
 public class LoginWindow extends MyWindow {
 
-    private final MyBeanFieldGroup<User> bfg;
-    private final MyLoginForm loginForm;
+    private MyBeanFieldGroup<User> bfg;
+    private MyLoginForm loginForm;
 
     @Inject
     private Session session;
     @Inject
     private UserService userService;
 
-    public LoginWindow() {
-        super("Login");
+    @PostConstruct
+    public void postConstruct() {
+        setCaption("Login");
 
         bfg = new MyBeanFieldGroup<>(User.class);
 
