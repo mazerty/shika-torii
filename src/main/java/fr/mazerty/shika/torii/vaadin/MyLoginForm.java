@@ -6,18 +6,18 @@ import fr.mazerty.shika.ishi.vaadin.MyButton;
 import fr.mazerty.shika.ishi.vaadin.MyPasswordField;
 import fr.mazerty.shika.ishi.vaadin.MyTextField;
 import fr.mazerty.shika.torii.bean.User;
-import fr.mazerty.shika.torii.cdi.ResourceBundleWrapper;
+import fr.mazerty.shika.torii.cdi.LanguageProxy;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 class MyLoginForm extends LoginForm {
 
+    @Inject
+    private LanguageProxy lp;
+
     private MyBeanFieldGroup<User> bfg;
     private MyTextField email;
-
-    @Inject
-    private ResourceBundleWrapper rbw;
 
     @PostConstruct
     public void postConstruct() {
@@ -26,17 +26,17 @@ class MyLoginForm extends LoginForm {
 
     @Override
     protected TextField createUsernameField() {
-        return email = bfg.buildAndBind(rbw.l("loginform.username.caption"), "email", MyTextField.class);
+        return email = bfg.buildAndBind(lp.l("loginform.username.caption"), "email", MyTextField.class);
     }
 
     @Override
     protected PasswordField createPasswordField() {
-        return bfg.buildAndBind(rbw.l("loginform.password.caption"), "password", MyPasswordField.class);
+        return bfg.buildAndBind(lp.l("loginform.password.caption"), "password", MyPasswordField.class);
     }
 
     @Override
     protected Button createLoginButton() {
-        MyButton login = new MyButton(rbw.l("loginform.button.caption"));
+        MyButton login = new MyButton(lp.l("loginform.button.caption"));
         login.setPrimary();
 
         return login;
