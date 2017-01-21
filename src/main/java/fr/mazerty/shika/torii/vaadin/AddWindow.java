@@ -23,8 +23,7 @@ public class AddWindow extends MyWindow {
 
         email = bfg.buildAndBind("Email", "email", MyTextField.class);
 
-        MyButton add = new MyButton("Add");
-        add.setPrimary();
+        MyButton add = new MyButton("Add").withPrimary();
         add.addClickListener(event -> close());
 
         FormLayout formLayout = new FormLayout(email, add);
