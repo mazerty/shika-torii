@@ -8,38 +8,33 @@ import fr.mazerty.shika.ishi.vaadin.MyTextField;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-
 class MyLoginForm extends LoginForm {
 
-    @Inject
     private LanguageProxy lp;
-
     private MyBeanFieldGroup<User> bfg;
-    private MyTextField email;
 
-    @PostConstruct
-    public void postConstruct() {
-        bfg = new MyBeanFieldGroup<>(User.class);
+    private MyTextField email;
+    private MyPasswordField password;
+    private MyButton login;
+
+    MyLoginForm(LanguageProxy lp) {
+        this.lp = lp;
+        this.bfg = new MyBeanFieldGroup<>(User.class);
     }
 
     @Override
     protected TextField createUsernameField() {
-        return email = bfg.buildAndBind(lp.l("loginform.username.caption"), "email", MyTextField.class);
+        return email = bfg.buildAndBind(null, "email", MyTextField.class);
     }
 
     @Override
     protected PasswordField createPasswordField() {
-        return bfg.buildAndBind(lp.l("loginform.password.caption"), "password", MyPasswordField.class);
+        return password = bfg.buildAndBind(null, "password", MyPasswordField.class);
     }
 
     @Override
     protected Button createLoginButton() {
-        MyButton login = new MyButton(lp.l("loginform.button.caption"));
-        login.setPrimary();
-
-        return login;
+        return login = new MyButton().withPrimary();
     }
 
     @Override
@@ -54,6 +49,12 @@ class MyLoginForm extends LoginForm {
     @Override
     public void focus() {
         email.focus();
+    }
+
+    void refreshCaptions() {
+        email.setCaption(lp.l("loginform.username.caption"));
+        password.setCaption(lp.l("loginform.password.caption"));
+        login.setCaption(lp.l("loginform.button.caption"));
     }
 
     public User getBean() {

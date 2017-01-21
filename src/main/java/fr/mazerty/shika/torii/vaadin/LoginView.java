@@ -1,19 +1,20 @@
 package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.cdi.CDIView;
+import com.vaadin.data.Property;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.*;
 import fr.mazerty.shika.ishi.vaadin.MyView;
+import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
+import fr.mazerty.shika.torii.service.UserService;
+import fr.mazerty.shika.torii.session.Session;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-/**
- * Cette vue est automatiquement présentée lors de la connexion à l'application
- */
+import static com.vaadin.ui.Notification.Type.ERROR_MESSAGE;
+
 @CDIView(LoginView.VIEW_NAME)
 public class LoginView extends MyView {
 
@@ -22,31 +23,52 @@ public class LoginView extends MyView {
     @Inject
     private LanguageProxy lp;
     @Inject
-    private LoginWindow loginWindow;
+    private Session session;
+    @Inject
+    private UserService userService;
 
     private ComboBox cbLanguage;
+    private MyLoginForm loginForm;
 
     @PostConstruct
     public void postConstruct() {
         cbLanguage = new ComboBox();
         cbLanguage.setNullSelectionAllowed(false);
         cbLanguage.addItems(Language.ENGLISH, Language.FRENCH);
-        // TODO changevaluelistener
+        cbLanguage.addValueChangeListener(this::changeLanguage);
 
-        HorizontalLayout horizontalLayout = new HorizontalLayout(cbLanguage);
-        horizontalLayout.setHeightUndefined();
-        horizontalLayout.setWidth(100, Unit.PERCENTAGE);
-        horizontalLayout.setComponentAlignment(cbLanguage, Alignment.MIDDLE_RIGHT);
-        horizontalLayout.setMargin(true);
+        loginForm = new MyLoginForm(lp);
+        loginForm.addLoginListener(this::login);
+        Panel panel = new Panel(loginForm);
+        panel.setSizeUndefined();
 
-        addComponent(horizontalLayout);
+        addComponents(cbLanguage, panel);
+        setComponentAlignment(cbLanguage, Alignment.MIDDLE_RIGHT);
+        setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
+        setMargin(true);
+    }
+
+    private void changeLanguage(Property.ValueChangeEvent valueChangeEvent) {
+        lp.setLanguage((Language) valueChangeEvent.getProperty().getValue());
+        loginForm.refreshCaptions();
+    }
+
+    private void login(@SuppressWarnings("unused") LoginForm.LoginEvent loginEvent) {
+        User match = userService.authenticate(loginForm.getBean());
+        if (match == null) {
+            Notification.show(lp.l("loginwindow.error"), ERROR_MESSAGE);
+        } else {
+            session.login(match);
+            navigateTo(MainView.MAIN_VIEW_NAME);
+        }
     }
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
         cbLanguage.select(lp.getLanguage());
 
-        show(loginWindow);
+        loginForm.setBean(new User());
+        loginForm.focus();
     }
 
 }
