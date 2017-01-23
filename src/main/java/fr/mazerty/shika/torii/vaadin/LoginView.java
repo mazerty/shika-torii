@@ -49,7 +49,7 @@ public class LoginView extends MyView {
     }
 
     private void changeLanguage(Property.ValueChangeEvent valueChangeEvent) {
-        lp.setLanguage((Language) valueChangeEvent.getProperty().getValue());
+        lp.saveLanguage((Language) valueChangeEvent.getProperty().getValue());
         loginForm.refreshCaptions();
     }
 
