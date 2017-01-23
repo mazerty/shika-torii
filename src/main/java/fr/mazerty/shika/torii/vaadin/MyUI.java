@@ -36,16 +36,16 @@ public class MyUI extends UI {
                 getWindows().forEach(Window::close);
 
                 boolean goingToLoginView = LoginView.VIEW_NAME.equals(event.getViewName());
-                boolean alreadyLoggedIn = session.isLoggedIn();
+                boolean goingToAdminView = AdminView.VIEW_NAME.equals(event.getViewName());
 
-                if (goingToLoginView && alreadyLoggedIn) {
-                    session.logOut();
-                    return true; // on accepte la transition vers la loginview
-                } else if (goingToLoginView || alreadyLoggedIn) {
-                    return true; // on accepte la transition vers la view demandée
+                if (goingToLoginView) {
+                    session.logout();
+                    return true;
+                } else if (!goingToAdminView && session.isLoggedIn() || session.isAdmin()) {
+                    return true;
                 } else {
                     navigator.navigateTo(LoginView.VIEW_NAME);
-                    return false; // on refuse la transition et on redirige vers la loginview
+                    return false;
                 }
             }
 

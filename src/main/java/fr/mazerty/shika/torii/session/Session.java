@@ -14,12 +14,16 @@ public class Session implements Serializable {
         return loggedUser != null;
     }
 
-    public void logOut() {
+    public void logout() {
         loggedUser = null;
     }
 
     public void login(User user) {
         loggedUser = user;
+    }
+
+    public boolean isAdmin() {
+        return isLoggedIn() && Boolean.TRUE.equals(loggedUser.getAdmin());
     }
 
 }

@@ -59,7 +59,7 @@ public class LoginView extends MyView {
             Notification.show(lp.l("loginwindow.error"), ERROR_MESSAGE);
         } else {
             session.login(match);
-            navigateTo(MainView.MAIN_VIEW_NAME);
+            navigateTo(MainView.VIEW_NAME);
         }
     }
 
