@@ -8,22 +8,22 @@ import java.io.Serializable;
 @SessionScoped
 public class Session implements Serializable {
 
-    private User loggedUser;
+    private User user;
 
-    public boolean isLoggedIn() {
-        return loggedUser != null;
+    public void login(User user) {
+        this.user = user;
     }
 
     public void logout() {
-        loggedUser = null;
+        user = null;
     }
 
-    public void login(User user) {
-        loggedUser = user;
+    public boolean isLoggedIn() {
+        return user != null;
     }
 
     public boolean isAdmin() {
-        return isLoggedIn() && Boolean.TRUE.equals(loggedUser.getAdmin());
+        return isLoggedIn() && Boolean.TRUE.equals(user.getAdmin());
     }
 
 }
