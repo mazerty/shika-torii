@@ -7,8 +7,8 @@ import com.vaadin.ui.*;
 import fr.mazerty.shika.ishi.vaadin.MyView;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
+import fr.mazerty.shika.torii.cdi.Session;
 import fr.mazerty.shika.torii.service.UserService;
-import fr.mazerty.shika.torii.session.Session;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;

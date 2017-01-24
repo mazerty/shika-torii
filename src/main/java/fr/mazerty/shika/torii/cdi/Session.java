@@ -1,4 +1,4 @@
-package fr.mazerty.shika.torii.session;
+package fr.mazerty.shika.torii.cdi;
 
 import fr.mazerty.shika.torii.bean.User;
 

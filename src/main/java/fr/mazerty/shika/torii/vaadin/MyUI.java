@@ -10,7 +10,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.Window;
-import fr.mazerty.shika.torii.session.Session;
+import fr.mazerty.shika.torii.cdi.Session;
 
 import javax.inject.Inject;
 
