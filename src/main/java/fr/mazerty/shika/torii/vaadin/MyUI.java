@@ -28,33 +28,36 @@ public class MyUI extends UI {
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         Navigator navigator = new Navigator(this, this);
-
         navigator.addProvider(cdiViewProvider);
-        navigator.addViewChangeListener(new ViewChangeListener() {
-            @Override
-            public boolean beforeViewChange(ViewChangeEvent event) {
-                getWindows().forEach(Window::close);
-
-                boolean goingToLoginView = LoginView.VIEW_NAME.equals(event.getViewName());
-                boolean goingToAdminView = AdminView.VIEW_NAME.equals(event.getViewName());
-
-                if (goingToLoginView) {
-                    session.logout();
-                    return true;
-                } else if (!goingToAdminView && session.isLoggedIn() || session.isAdmin()) {
-                    return true;
-                } else {
-                    navigator.navigateTo(LoginView.VIEW_NAME);
-                    return false;
-                }
-            }
-
-            @Override
-            public void afterViewChange(ViewChangeEvent event) {
-            }
-        });
+        navigator.addViewChangeListener(new MyViewChangeListener());
 
         navigator.navigateTo(LoginView.VIEW_NAME);
+    }
+
+    private class MyViewChangeListener implements ViewChangeListener {
+
+        @Override
+        public boolean beforeViewChange(ViewChangeEvent event) {
+            getWindows().forEach(Window::close);
+
+            boolean goingToLoginView = LoginView.VIEW_NAME.equals(event.getViewName());
+            boolean goingToAdminView = AdminView.VIEW_NAME.equals(event.getViewName());
+
+            if (goingToLoginView) {
+                session.logout();
+                return true;
+            } else if (!goingToAdminView && session.isLoggedIn() || session.isAdmin()) {
+                return true;
+            } else {
+                getNavigator().navigateTo(LoginView.VIEW_NAME);
+                return false;
+            }
+        }
+
+        @Override
+        public void afterViewChange(ViewChangeEvent event) {
+        }
+
     }
 
 }
