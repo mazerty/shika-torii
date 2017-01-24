@@ -11,8 +11,8 @@ import fr.mazerty.shika.torii.cdi.LanguageProxy;
 class MyLoginForm extends LoginForm {
 
     private LanguageProxy lp;
-    private MyBeanFieldGroup<User> bfg;
 
+    private MyBeanFieldGroup<User> bfg;
     private MyTextField email;
     private MyPasswordField password;
     private Button login;
