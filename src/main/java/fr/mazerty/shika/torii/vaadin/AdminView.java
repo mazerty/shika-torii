@@ -9,11 +9,15 @@ import fr.mazerty.shika.ishi.vaadin.MyView;
 import fr.mazerty.shika.torii.bean.User;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @CDIView(AdminView.VIEW_NAME)
 public class AdminView extends MyView {
 
     static final String VIEW_NAME = "admin";
+
+    @Inject
+    private AddWindow addWindow;
 
     @PostConstruct
     public void postConstruct() {
@@ -23,6 +27,7 @@ public class AdminView extends MyView {
 
         // TODO : i18n when moved to admin view
         Button add = new Button("Add");
+        add.addClickListener(event -> show(addWindow));
 
         MyGrid grid = new MyGrid<>(User.class);
         grid.setSizeFull();
