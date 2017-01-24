@@ -49,7 +49,7 @@ public class LoginView extends MyView {
     }
 
     private void changeLanguage(Property.ValueChangeEvent valueChangeEvent) {
-        lp.saveLanguage((Language) valueChangeEvent.getProperty().getValue());
+        lp.set((Language) valueChangeEvent.getProperty().getValue());
         loginForm.refreshCaptions();
     }
 
@@ -65,7 +65,7 @@ public class LoginView extends MyView {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        cbLanguage.select(lp.getLanguage());
+        cbLanguage.select(lp.get());
 
         loginForm.setBean(new User());
         loginForm.focus();

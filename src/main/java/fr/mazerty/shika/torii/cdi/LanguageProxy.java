@@ -29,11 +29,11 @@ public class LanguageProxy implements Serializable {
         return language.getResourceBundle().getString(code);
     }
 
-    public Language getLanguage() {
+    public Language get() {
         return language;
     }
 
-    public void saveLanguage(Language language) {
+    public void set(Language language) {
         this.language = language;
 
         Cookie cookie = new Cookie(COOKIE_NAME, language.name());
