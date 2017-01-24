@@ -4,6 +4,11 @@ import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
+/**
+ * Composite enum used for internationalization, matching the labels with each supported language
+ *
+ * @see LanguageProxy
+ */
 public enum Language {
 
     ENGLISH("English", Locale.ENGLISH),
