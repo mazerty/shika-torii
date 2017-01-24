@@ -2,9 +2,9 @@ package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.ui.*;
 import fr.mazerty.shika.ishi.vaadin.MyBeanFieldGroup;
-import fr.mazerty.shika.ishi.vaadin.MyButton;
 import fr.mazerty.shika.ishi.vaadin.MyPasswordField;
 import fr.mazerty.shika.ishi.vaadin.MyTextField;
+import fr.mazerty.shika.ishi.vaadin.PrimaryButton;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
 
@@ -15,7 +15,7 @@ class MyLoginForm extends LoginForm {
 
     private MyTextField email;
     private MyPasswordField password;
-    private MyButton login;
+    private Button login;
 
     MyLoginForm(LanguageProxy lp) {
         this.lp = lp;
@@ -34,7 +34,7 @@ class MyLoginForm extends LoginForm {
 
     @Override
     protected Button createLoginButton() {
-        return login = new MyButton().withPrimary();
+        return login = new PrimaryButton();
     }
 
     @Override

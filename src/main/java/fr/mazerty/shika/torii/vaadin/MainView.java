@@ -2,7 +2,7 @@ package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.cdi.CDIView;
 import com.vaadin.navigator.ViewChangeListener;
-import fr.mazerty.shika.ishi.vaadin.MyButton;
+import com.vaadin.ui.Button;
 import fr.mazerty.shika.ishi.vaadin.MyView;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +14,7 @@ public class MainView extends MyView {
 
     @PostConstruct
     public void postConstruct() {
-        MyButton admin = new MyButton("admin");
+        Button admin = new Button("admin");
         admin.addClickListener(event -> navigateTo(AdminView.VIEW_NAME));
         addComponent(admin);
     }
