@@ -1,7 +1,6 @@
 package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.cdi.CDIView;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Button;
 import fr.mazerty.shika.ishi.vaadin.MyView;
 
@@ -17,10 +16,6 @@ public class MainView extends MyView {
         Button admin = new Button("admin");
         admin.addClickListener(event -> navigateTo(AdminView.VIEW_NAME));
         addComponent(admin);
-    }
-
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
     }
 
 }

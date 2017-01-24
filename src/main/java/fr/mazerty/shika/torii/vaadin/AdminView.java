@@ -1,7 +1,6 @@
 package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.cdi.CDIView;
-import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import fr.mazerty.shika.ishi.vaadin.MyGrid;
@@ -35,10 +34,6 @@ public class AdminView extends MyView {
         addComponents(add, grid);
         setComponentAlignment(add, Alignment.MIDDLE_RIGHT);
         setExpandRatio(grid, 1);
-    }
-
-    @Override
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
     }
 
 }
