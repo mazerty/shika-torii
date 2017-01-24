@@ -1,4 +1,4 @@
-package fr.mazerty.shika.torii.vaadin;
+package fr.mazerty.shika.torii.cdi;
 
 import java.util.Locale;
 import java.util.PropertyResourceBundle;

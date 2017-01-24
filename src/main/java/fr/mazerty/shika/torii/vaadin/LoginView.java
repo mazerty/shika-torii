@@ -6,6 +6,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import fr.mazerty.shika.ishi.vaadin.MyView;
 import fr.mazerty.shika.torii.bean.User;
+import fr.mazerty.shika.torii.cdi.Language;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
 import fr.mazerty.shika.torii.cdi.Session;
 import fr.mazerty.shika.torii.service.UserService;
@@ -14,6 +15,8 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
 import static com.vaadin.ui.Notification.Type.ERROR_MESSAGE;
+import static fr.mazerty.shika.torii.cdi.Language.ENGLISH;
+import static fr.mazerty.shika.torii.cdi.Language.FRENCH;
 
 @CDIView(LoginView.VIEW_NAME)
 public class LoginView extends MyView {
@@ -34,7 +37,7 @@ public class LoginView extends MyView {
     public void postConstruct() {
         cbLanguage = new ComboBox();
         cbLanguage.setNullSelectionAllowed(false);
-        cbLanguage.addItems(Language.ENGLISH, Language.FRENCH);
+        cbLanguage.addItems(ENGLISH, FRENCH);
         cbLanguage.addValueChangeListener(this::changeLanguage);
 
         loginForm = new MyLoginForm(lp);

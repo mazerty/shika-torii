@@ -1,7 +1,6 @@
 package fr.mazerty.shika.torii.cdi;
 
 import com.vaadin.server.VaadinService;
-import fr.mazerty.shika.torii.vaadin.Language;
 
 import javax.enterprise.context.SessionScoped;
 import javax.servlet.http.Cookie;
