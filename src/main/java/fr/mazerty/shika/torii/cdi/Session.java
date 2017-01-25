@@ -5,6 +5,9 @@ import fr.mazerty.shika.torii.bean.User;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 
+/**
+ * CDI proxy for the {@link User} currently logged in
+ */
 @SessionScoped
 public class Session implements Serializable {
 
