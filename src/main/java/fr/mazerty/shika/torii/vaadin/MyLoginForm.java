@@ -8,6 +8,9 @@ import fr.mazerty.shika.ishi.vaadin.PrimaryButton;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
 
+/**
+ * Custom bean-backed {@link LoginForm}
+ */
 class MyLoginForm extends LoginForm {
 
     private LanguageProxy lp;
@@ -51,6 +54,9 @@ class MyLoginForm extends LoginForm {
         email.focus();
     }
 
+    /**
+     * Since the language can be changed while this form is displayed, we need a method to refresh the captions
+     */
     void refreshCaptions() {
         email.setCaption(lp.l("loginform.username.caption"));
         password.setCaption(lp.l("loginform.password.caption"));
