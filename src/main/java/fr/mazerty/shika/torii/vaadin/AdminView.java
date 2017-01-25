@@ -10,6 +10,9 @@ import fr.mazerty.shika.torii.bean.User;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
+/**
+ * Special view for the application's administration. Logged user needs to be administrator to access it.
+ */
 @CDIView(AdminView.VIEW_NAME)
 public class AdminView extends MyView {
 

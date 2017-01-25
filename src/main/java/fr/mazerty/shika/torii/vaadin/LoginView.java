@@ -18,6 +18,9 @@ import static com.vaadin.ui.Notification.Type.ERROR_MESSAGE;
 import static fr.mazerty.shika.torii.cdi.Language.ENGLISH;
 import static fr.mazerty.shika.torii.cdi.Language.FRENCH;
 
+/**
+ * Special view to login to the application. Anyone can access it.
+ */
 @CDIView(LoginView.VIEW_NAME)
 public class LoginView extends MyView {
 
@@ -57,11 +60,11 @@ public class LoginView extends MyView {
     }
 
     private void login(@SuppressWarnings("unused") LoginForm.LoginEvent loginEvent) {
-        User match = userService.authenticate(loginForm.getBean());
-        if (match == null) {
+        User user = userService.authenticate(loginForm.getBean());
+        if (user == null) {
             Notification.show(lp.l("loginwindow.error"), ERROR_MESSAGE);
         } else {
-            session.login(match);
+            session.login(user);
             navigateTo(MainView.VIEW_NAME);
         }
     }
