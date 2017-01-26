@@ -3,9 +3,11 @@ package fr.mazerty.shika.torii.vaadin;
 import com.vaadin.cdi.CDIView;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.HorizontalLayout;
 import fr.mazerty.shika.ishi.vaadin.MyGrid;
 import fr.mazerty.shika.ishi.vaadin.MyView;
 import fr.mazerty.shika.torii.bean.User;
+import fr.mazerty.shika.torii.cdi.LanguageProxy;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -19,24 +21,27 @@ public class AdminView extends MyView {
     static final String VIEW_NAME = "admin";
 
     @Inject
+    private LanguageProxy lp;
+    @Inject
     private AddWindow addWindow;
 
     @PostConstruct
     public void postConstruct() {
-        setSizeFull();
-        setMargin(true);
-        setSpacing(true);
+        Button back = new Button(lp.l("adminview.back.caption"));
+        back.addClickListener(event -> navigateTo(MainView.VIEW_NAME));
 
-        // TODO : i18n when moved to admin view
-        Button add = new Button("Add");
+        Button add = new Button(lp.l("adminview.add.caption"));
         add.addClickListener(event -> show(addWindow));
 
         MyGrid grid = new MyGrid<>(User.class);
-        grid.setSizeFull();
+        grid.setColumns("email", "admin");
 
-        addComponents(add, grid);
-        setComponentAlignment(add, Alignment.MIDDLE_RIGHT);
-        setExpandRatio(grid, 1);
+        HorizontalLayout horizontalLayout = new HorizontalLayout(back, grid, add);
+        horizontalLayout.setMargin(true);
+        horizontalLayout.setSpacing(true);
+
+        addComponent(horizontalLayout);
+        setComponentAlignment(horizontalLayout, Alignment.TOP_CENTER);
     }
 
 }
