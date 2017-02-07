@@ -35,6 +35,7 @@ public class AdminView extends MyView {
 
         MyGrid grid = new MyGrid<>(User.class);
         grid.setColumns("email", "admin");
+        grid.setColumnHeaderCaptions(lp.l("adminview.email.caption"), lp.l("adminview.admin.caption"));
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(back, grid, add);
         horizontalLayout.setMargin(true);
