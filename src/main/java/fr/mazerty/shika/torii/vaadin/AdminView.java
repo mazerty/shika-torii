@@ -1,6 +1,7 @@
 package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.cdi.CDIView;
+import com.vaadin.data.util.converter.StringToBooleanConverter;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
@@ -39,6 +40,7 @@ public class AdminView extends MyView {
         MyGrid<User> grid = new MyGrid<>(User.class);
         grid.setColumns("email", "admin");
         grid.setColumnHeaderCaptions(lp.l("adminview.email.caption"), lp.l("adminview.admin.caption"));
+        grid.getColumn("admin").setConverter(new StringToBooleanConverter(lp.l("yes"), lp.l("no")));
         grid.addAll(userService.list());
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(back, grid, add);
