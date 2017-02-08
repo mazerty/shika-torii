@@ -4,6 +4,7 @@ import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.dao.UserDao;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.List;
 
 import static fr.mazerty.shika.torii.service.UserServiceTest.UNKNOWN_EMAIL;
 
@@ -16,7 +17,12 @@ public class MockUserDao implements UserDao {
             return null;
         }
 
-        throw new RuntimeException("uncovered test case");
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public List<User> selectAll() {
+        throw new UnsupportedOperationException();
     }
 
 }

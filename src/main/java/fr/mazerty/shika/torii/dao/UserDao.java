@@ -2,6 +2,8 @@ package fr.mazerty.shika.torii.dao;
 
 import fr.mazerty.shika.torii.bean.User;
 
+import java.util.List;
+
 public interface UserDao {
 
     /**
@@ -11,5 +13,10 @@ public interface UserDao {
      * @return {@link User} instance corresponding to the given email, or null if no user has been found
      */
     User selectByEmail(String email);
+
+    /**
+     * @return {@link List} of all the {@link User}s in the database
+     */
+    List<User> selectAll();
 
 }
