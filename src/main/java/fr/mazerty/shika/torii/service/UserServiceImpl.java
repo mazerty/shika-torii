@@ -6,6 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.List;
 
 import static org.apache.commons.lang3.StringUtils.defaultString;
 
@@ -30,6 +31,11 @@ public class UserServiceImpl implements UserService {
             BCrypt.checkpw(userPassword, DUMMY_HASH);
             return null;
         } else return BCrypt.checkpw(userPassword, match.getPassword()) ? match : null;
+    }
+
+    @Override
+    public List<User> list() {
+        return userDao.selectAll();
     }
 
 }
