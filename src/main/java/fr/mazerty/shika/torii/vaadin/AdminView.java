@@ -8,6 +8,7 @@ import fr.mazerty.shika.ishi.vaadin.MyGrid;
 import fr.mazerty.shika.ishi.vaadin.MyView;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
+import fr.mazerty.shika.torii.service.UserService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -24,6 +25,8 @@ public class AdminView extends MyView {
     private LanguageProxy lp;
     @Inject
     private AddWindow addWindow;
+    @Inject
+    private UserService userService;
 
     @PostConstruct
     public void postConstruct() {
@@ -33,9 +36,10 @@ public class AdminView extends MyView {
         Button add = new Button(lp.l("adminview.add.caption"));
         add.addClickListener(event -> show(addWindow));
 
-        MyGrid grid = new MyGrid<>(User.class);
+        MyGrid<User> grid = new MyGrid<>(User.class);
         grid.setColumns("email", "admin");
         grid.setColumnHeaderCaptions(lp.l("adminview.email.caption"), lp.l("adminview.admin.caption"));
+        grid.addAll(userService.list());
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(back, grid, add);
         horizontalLayout.setMargin(true);
