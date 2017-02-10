@@ -39,7 +39,7 @@ public class AdminView extends MyView {
 
         MyGrid<User> grid = new MyGrid<>(User.class);
         grid.setColumns("email", "admin");
-        grid.setColumnHeaderCaptions(lp.l("adminview.email.caption"), lp.l("adminview.admin.caption"));
+        grid.setColumnHeaderCaptions(lp.l("user.email.caption"), lp.l("user.admin.caption"));
         grid.getColumn("admin").setConverter(new StringToBooleanConverter(lp.l("yes"), lp.l("no")));
         grid.addAll(userService.list());
 

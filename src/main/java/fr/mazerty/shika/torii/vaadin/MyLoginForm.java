@@ -58,8 +58,8 @@ class MyLoginForm extends LoginForm {
      * Since the language can be changed while this form is displayed, we need a method to refresh the captions
      */
     void refreshCaptions() {
-        email.setCaption(lp.l("loginform.username.caption"));
-        password.setCaption(lp.l("loginform.password.caption"));
+        email.setCaption(lp.l("user.email.caption"));
+        password.setCaption(lp.l("user.password.caption"));
         login.setCaption(lp.l("loginform.button.caption"));
     }
 
