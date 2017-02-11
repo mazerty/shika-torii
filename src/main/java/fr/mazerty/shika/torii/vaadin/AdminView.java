@@ -31,10 +31,10 @@ public class AdminView extends MyView {
 
     @PostConstruct
     public void postConstruct() {
-        Button back = new Button(lp.l("adminview.back.caption"));
+        Button back = new Button(lp.l("back"));
         back.addClickListener(event -> navigateTo(MainView.VIEW_NAME));
 
-        Button add = new Button(lp.l("adminview.add.caption"));
+        Button add = new Button(lp.l("add"));
         add.addClickListener(event -> show(userWindow));
 
         MyGrid<User> grid = new MyGrid<>(User.class);
