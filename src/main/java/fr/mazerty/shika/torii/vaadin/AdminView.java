@@ -25,7 +25,7 @@ public class AdminView extends MyView {
     @Inject
     private LanguageProxy lp;
     @Inject
-    private AddWindow addWindow;
+    private UserWindow userWindow;
     @Inject
     private UserService userService;
 
@@ -35,7 +35,7 @@ public class AdminView extends MyView {
         back.addClickListener(event -> navigateTo(MainView.VIEW_NAME));
 
         Button add = new Button(lp.l("adminview.add.caption"));
-        add.addClickListener(event -> show(addWindow));
+        add.addClickListener(event -> show(userWindow));
 
         MyGrid<User> grid = new MyGrid<>(User.class);
         grid.setColumns("email", "admin");
