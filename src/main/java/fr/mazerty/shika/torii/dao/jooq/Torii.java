@@ -31,7 +31,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Torii extends SchemaImpl {
 
-    private static final long serialVersionUID = -1025441296;
+    private static final long serialVersionUID = -508641457;
 
     /**
      * The reference instance of <code>torii</code>
@@ -68,7 +68,7 @@ public class Torii extends SchemaImpl {
 
     private final List<Sequence<?>> getSequences0() {
         return Arrays.<Sequence<?>>asList(
-            Sequences.S_USER_ID);
+            Sequences.T_USER_ID_SEQ);
     }
 
     @Override

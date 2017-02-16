@@ -24,7 +24,7 @@ import org.jooq.impl.SequenceImpl;
 public class Sequences {
 
     /**
-     * The sequence <code>torii.s_user_id</code>
+     * The sequence <code>torii.t_user_id_seq</code>
      */
-    public static final Sequence<Long> S_USER_ID = new SequenceImpl<Long>("s_user_id", Torii.TORII, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
+    public static final Sequence<Long> T_USER_ID_SEQ = new SequenceImpl<Long>("t_user_id_seq", Torii.TORII, org.jooq.impl.SQLDataType.BIGINT.nullable(false));
 }

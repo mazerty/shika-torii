@@ -14,6 +14,7 @@ import java.util.List;
 import javax.annotation.Generated;
 
 import org.jooq.Field;
+import org.jooq.Identity;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -34,7 +35,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class TUser extends TableImpl<TUserRecord> {
 
-    private static final long serialVersionUID = -253545993;
+    private static final long serialVersionUID = -2025870672;
 
     /**
      * The reference instance of <code>torii.t_user</code>
@@ -52,7 +53,7 @@ public class TUser extends TableImpl<TUserRecord> {
     /**
      * The column <code>torii.t_user.id</code>.
      */
-    public final TableField<TUserRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<TUserRecord, Integer> ID = createField("id", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaultValue(org.jooq.impl.DSL.field("nextval('torii.t_user_id_seq'::regclass)", org.jooq.impl.SQLDataType.INTEGER)), this, "");
 
     /**
      * The column <code>torii.t_user.email</code>.
@@ -97,6 +98,14 @@ public class TUser extends TableImpl<TUserRecord> {
     @Override
     public Schema getSchema() {
         return Torii.TORII;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Identity<TUserRecord, Integer> getIdentity() {
+        return Keys.IDENTITY_T_USER;
     }
 
     /**
