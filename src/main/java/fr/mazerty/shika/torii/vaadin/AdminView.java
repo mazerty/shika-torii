@@ -9,9 +9,11 @@ import fr.mazerty.shika.ishi.vaadin.MyGrid;
 import fr.mazerty.shika.ishi.vaadin.MyView;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
+import fr.mazerty.shika.torii.cdi.event.UserChangedEvent;
 import fr.mazerty.shika.torii.service.UserService;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 /**
@@ -29,6 +31,8 @@ public class AdminView extends MyView {
     @Inject
     private UserService userService;
 
+    private MyGrid<User> grid;
+
     @PostConstruct
     public void postConstruct() {
         Button back = new Button(lp.l("back"));
@@ -37,11 +41,10 @@ public class AdminView extends MyView {
         Button add = new Button(lp.l("add"));
         add.addClickListener(event -> show(userWindow));
 
-        MyGrid<User> grid = new MyGrid<>(User.class);
+        grid = new MyGrid<>(User.class);
         grid.setColumns("email", "admin");
         grid.setColumnHeaderCaptions(lp.l("user.email.caption"), lp.l("user.admin.caption"));
         grid.getColumn("admin").setConverter(new StringToBooleanConverter(lp.l("yes"), lp.l("no")));
-        grid.addAll(userService.list());
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(back, grid, add);
         horizontalLayout.setMargin(true);
@@ -49,6 +52,12 @@ public class AdminView extends MyView {
 
         addComponent(horizontalLayout);
         setComponentAlignment(horizontalLayout, Alignment.TOP_CENTER);
+
+        refreshGrid(null);
+    }
+
+    private void refreshGrid(@Observes UserChangedEvent event) {
+        grid.setItems(userService.list());
     }
 
 }

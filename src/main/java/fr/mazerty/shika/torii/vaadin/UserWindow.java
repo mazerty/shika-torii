@@ -5,6 +5,8 @@ import com.vaadin.ui.FormLayout;
 import fr.mazerty.shika.ishi.vaadin.*;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
+import fr.mazerty.shika.torii.cdi.event.UserChangedEvent;
+import fr.mazerty.shika.torii.service.UserService;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -13,6 +15,10 @@ public class UserWindow extends MyBeanWindow<User> {
 
     @Inject
     private LanguageProxy lp;
+    @Inject
+    private UserService userService;
+    @Inject
+    private javax.enterprise.event.Event<UserChangedEvent> userChangedEvent;
 
     private MyBeanFieldGroup<User> bfg = new MyBeanFieldGroup<>(User.class);
     private MyTextField email;
@@ -39,7 +45,11 @@ public class UserWindow extends MyBeanWindow<User> {
     protected void enter() {
         setCaption(lp.l("userwindow.caption.add"));
 
-        save.setClickListener(event -> close());
+        save.setClickListener(event -> {
+            userService.create(bfg.getBean());
+            close();
+            userChangedEvent.fire(new UserChangedEvent());
+        });
 
         bfg.setBean(new User());
         email.focus();
