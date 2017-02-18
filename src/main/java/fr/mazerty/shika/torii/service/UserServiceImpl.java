@@ -13,8 +13,8 @@ import static org.apache.commons.lang3.StringUtils.defaultString;
 @ApplicationScoped
 public class UserServiceImpl implements UserService {
 
-    // TODO : generate on startup with a customizable complexity
-    private static final String DUMMY_HASH = "$2a$13$byD4Ftv39Z76hUfd01URsePSdaV722c7J7NcLfs6o3KdJsAwHhEjq";
+    private static final Integer LOG_ROUNDS = 15;
+    private static final String DUMMY_HASH = BCrypt.hashpw("whatTheHell?", BCrypt.gensalt(LOG_ROUNDS));
 
     @Inject
     private UserDao userDao;
@@ -36,6 +36,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> list() {
         return userDao.selectAll();
+    }
+
+    @Override
+    public void create(User user) {
+        user.setPassword(DUMMY_HASH); // TODO generate random password and send it by mail
+        userDao.insert(user);
     }
 
 }

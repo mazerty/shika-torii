@@ -19,4 +19,9 @@ public interface UserService {
      */
     List<User> list();
 
+    /**
+     * Creates the given {@link User}
+     */
+    void create(User user);
+
 }
