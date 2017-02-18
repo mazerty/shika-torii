@@ -19,4 +19,9 @@ public interface UserDao {
      */
     List<User> selectAll();
 
+    /**
+     * Inserts the given {@link User} in the database
+     */
+    void insert(User user);
+
 }

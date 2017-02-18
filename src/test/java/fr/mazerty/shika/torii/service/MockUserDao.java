@@ -25,4 +25,9 @@ public class MockUserDao implements UserDao {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void insert(User user) {
+        throw new UnsupportedOperationException(); // TODO when mails have been implemented
+    }
+
 }
