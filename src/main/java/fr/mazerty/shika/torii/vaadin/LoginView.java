@@ -1,7 +1,7 @@
 package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.cdi.CDIView;
-import com.vaadin.data.Property;
+import com.vaadin.data.HasValue;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
 import fr.mazerty.shika.ishi.vaadin.MyView;
@@ -33,14 +33,14 @@ public class LoginView extends MyView {
     @Inject
     private UserService userService;
 
-    private ComboBox cbLanguage;
+    private ComboBox<Language> cbLanguage;
     private MyLoginForm loginForm;
 
     @PostConstruct
     public void postConstruct() {
-        cbLanguage = new ComboBox();
-        cbLanguage.setNullSelectionAllowed(false);
-        cbLanguage.addItems(ENGLISH, FRENCH);
+        cbLanguage = new ComboBox<>();
+        cbLanguage.setEmptySelectionAllowed(false);
+        cbLanguage.setItems(ENGLISH, FRENCH);
         cbLanguage.addValueChangeListener(this::changeLanguage);
 
         loginForm = new MyLoginForm(lp);
@@ -54,8 +54,8 @@ public class LoginView extends MyView {
         setMargin(true);
     }
 
-    private void changeLanguage(Property.ValueChangeEvent valueChangeEvent) {
-        lp.set((Language) valueChangeEvent.getProperty().getValue());
+    private void changeLanguage(HasValue.ValueChangeEvent<Language> event) {
+        lp.set(event.getValue());
         loginForm.refreshCaptions();
     }
 
@@ -71,7 +71,7 @@ public class LoginView extends MyView {
 
     @Override
     public void enter(ViewChangeListener.ViewChangeEvent event) {
-        cbLanguage.select(lp.get());
+        cbLanguage.setSelectedItem(lp.get());
 
         loginForm.setBean(new User());
         loginForm.focus();

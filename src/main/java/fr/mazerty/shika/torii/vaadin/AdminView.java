@@ -1,11 +1,11 @@
 package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.cdi.CDIView;
-import com.vaadin.data.util.converter.StringToBooleanConverter;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Grid;
 import com.vaadin.ui.HorizontalLayout;
-import fr.mazerty.shika.ishi.vaadin.MyGrid;
+import fr.mazerty.shika.ishi.vaadin.BooleanRenderer;
 import fr.mazerty.shika.ishi.vaadin.MyView;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
@@ -31,7 +31,7 @@ public class AdminView extends MyView {
     @Inject
     private UserService userService;
 
-    private MyGrid<User> grid;
+    private Grid<User> grid;
 
     @PostConstruct
     public void postConstruct() {
@@ -41,10 +41,9 @@ public class AdminView extends MyView {
         Button add = new Button(lp.l("add"));
         add.addClickListener(event -> show(userWindow));
 
-        grid = new MyGrid<>(User.class);
-        grid.setColumns("email", "admin");
-        grid.setColumnHeaderCaptions(lp.l("user.email.caption"), lp.l("user.admin.caption"));
-        grid.getColumn("admin").setConverter(new StringToBooleanConverter(lp.l("yes"), lp.l("no")));
+        grid = new Grid<>();
+        grid.addColumn(User::getEmail).setCaption(lp.l("user.email.caption"));
+        grid.addColumn(User::getAdmin, new BooleanRenderer(lp.l("yes"), lp.l("no"))).setCaption(lp.l("user.admin.caption"));
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(back, grid, add);
         horizontalLayout.setMargin(true);

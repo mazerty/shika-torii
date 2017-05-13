@@ -1,8 +1,12 @@
 package fr.mazerty.shika.torii.vaadin;
 
+import com.vaadin.data.Binder;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
-import fr.mazerty.shika.ishi.vaadin.*;
+import com.vaadin.ui.TextField;
+import fr.mazerty.shika.ishi.vaadin.MyBeanWindow;
+import fr.mazerty.shika.ishi.vaadin.MyButton;
+import fr.mazerty.shika.ishi.vaadin.PrimaryButton;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
 import fr.mazerty.shika.torii.cdi.event.UserChangedEvent;
@@ -20,17 +24,19 @@ public class UserWindow extends MyBeanWindow<User> {
     @Inject
     private javax.enterprise.event.Event<UserChangedEvent> userChangedEvent;
 
-    private MyBeanFieldGroup<User> bfg = new MyBeanFieldGroup<>(User.class);
-    private MyTextField email;
+    private Binder<User> binder = new Binder<>();
+    private TextField email;
     private CheckBox admin;
     private MyButton save;
 
     @PostConstruct
     public void postConstruct() {
-        email = bfg.buildAndBind(lp.l("user.email.caption"), "email", MyTextField.class);
-        admin = bfg.buildAndBind(lp.l("user.admin.caption"), "admin", CheckBox.class);
-
+        email = new TextField(lp.l("user.email.caption"));
+        admin = new CheckBox(lp.l("user.admin.caption"));
         save = new PrimaryButton(lp.l("save"));
+
+        binder.forField(email).bind(User::getEmail, User::setEmail);
+        binder.forField(admin).bind(User::getAdmin, User::setAdmin);
 
         FormLayout formLayout = new FormLayout(email, admin, save);
         formLayout.setSizeUndefined();
@@ -46,12 +52,12 @@ public class UserWindow extends MyBeanWindow<User> {
         setCaption(lp.l("userwindow.caption.add"));
 
         save.setClickListener(event -> {
-            userService.create(bfg.getBean());
+            userService.create(binder.getBean());
             close();
             userChangedEvent.fire(new UserChangedEvent());
         });
 
-        bfg.setBean(new User());
+        binder.setBean(new User());
         email.focus();
     }
 

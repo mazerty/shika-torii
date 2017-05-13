@@ -1,9 +1,7 @@
 package fr.mazerty.shika.torii.vaadin;
 
+import com.vaadin.data.Binder;
 import com.vaadin.ui.*;
-import fr.mazerty.shika.ishi.vaadin.MyBeanFieldGroup;
-import fr.mazerty.shika.ishi.vaadin.MyPasswordField;
-import fr.mazerty.shika.ishi.vaadin.MyTextField;
 import fr.mazerty.shika.ishi.vaadin.PrimaryButton;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
@@ -15,29 +13,31 @@ class MyLoginForm extends LoginForm {
 
     private LanguageProxy lp;
 
-    private MyBeanFieldGroup<User> bfg;
-    private MyTextField email;
-    private MyPasswordField password;
-    private Button login;
+    private final Binder<User> binder = new Binder<>();
+    private final TextField email = new TextField();
+    private final PasswordField password = new PasswordField();
+    private final Button login = new PrimaryButton();
 
     MyLoginForm(LanguageProxy lp) {
         this.lp = lp;
-        this.bfg = new MyBeanFieldGroup<>(User.class);
+
+        binder.forField(email).bind(User::getEmail, User::setEmail);
+        binder.forField(password).bind(User::getPassword, User::setPassword);
     }
 
     @Override
     protected TextField createUsernameField() {
-        return email = bfg.buildAndBind(null, "email", MyTextField.class);
+        return email;
     }
 
     @Override
     protected PasswordField createPasswordField() {
-        return password = bfg.buildAndBind(null, "password", MyPasswordField.class);
+        return password;
     }
 
     @Override
     protected Button createLoginButton() {
-        return login = new PrimaryButton();
+        return login;
     }
 
     @Override
@@ -64,11 +64,11 @@ class MyLoginForm extends LoginForm {
     }
 
     public User getBean() {
-        return bfg.getBean();
+        return binder.getBean();
     }
 
     public void setBean(User bean) {
-        bfg.setBean(bean);
+        binder.setBean(bean);
     }
 
 }
