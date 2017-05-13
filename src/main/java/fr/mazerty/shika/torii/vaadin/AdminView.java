@@ -46,8 +46,6 @@ public class AdminView extends MyView {
         grid.addColumn(User::getAdmin, new BooleanRenderer(lp.l("yes"), lp.l("no"))).setCaption(lp.l("user.admin.caption"));
 
         HorizontalLayout horizontalLayout = new HorizontalLayout(back, grid, add);
-        horizontalLayout.setMargin(true);
-        horizontalLayout.setSpacing(true);
 
         addComponent(horizontalLayout);
         setComponentAlignment(horizontalLayout, Alignment.TOP_CENTER);

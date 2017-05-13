@@ -51,7 +51,6 @@ public class LoginView extends MyView {
         addComponents(cbLanguage, panel);
         setComponentAlignment(cbLanguage, Alignment.MIDDLE_RIGHT);
         setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
-        setMargin(true);
     }
 
     private void changeLanguage(HasValue.ValueChangeEvent<Language> event) {
