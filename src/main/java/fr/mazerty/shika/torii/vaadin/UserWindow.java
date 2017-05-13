@@ -1,11 +1,11 @@
 package fr.mazerty.shika.torii.vaadin;
 
 import com.vaadin.data.Binder;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.TextField;
 import fr.mazerty.shika.ishi.vaadin.MyBeanWindow;
-import fr.mazerty.shika.ishi.vaadin.MyButton;
 import fr.mazerty.shika.ishi.vaadin.PrimaryButton;
 import fr.mazerty.shika.torii.bean.User;
 import fr.mazerty.shika.torii.cdi.LanguageProxy;
@@ -27,7 +27,7 @@ public class UserWindow extends MyBeanWindow<User> {
     private Binder<User> binder = new Binder<>();
     private TextField email;
     private CheckBox admin;
-    private MyButton save;
+    private Button save;
 
     @PostConstruct
     public void postConstruct() {
@@ -51,7 +51,7 @@ public class UserWindow extends MyBeanWindow<User> {
     protected void enter() {
         setCaption(lp.l("userwindow.caption.add"));
 
-        save.setClickListener(event -> {
+        save.addClickListener(event -> {
             userService.create(binder.getBean());
             close();
             userChangedEvent.fire(new UserChangedEvent());
