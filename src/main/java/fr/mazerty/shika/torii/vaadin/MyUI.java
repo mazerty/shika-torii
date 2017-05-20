@@ -9,7 +9,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
-import com.vaadin.ui.Window;
+import fr.mazerty.shika.ishi.vaadin.WindowCloserViewChangeListener;
 import fr.mazerty.shika.torii.cdi.Session;
 
 import javax.inject.Inject;
@@ -36,6 +36,7 @@ public class MyUI extends UI {
         // defines that the application consists of a set of annotated views you can access through the ui's navigator
         Navigator navigator = new Navigator(this, this);
         navigator.addProvider(cdiViewProvider);
+        navigator.addViewChangeListener(new WindowCloserViewChangeListener());
         navigator.addViewChangeListener(new MyViewChangeListener());
 
         navigator.navigateTo(LoginView.VIEW_NAME);
@@ -48,9 +49,6 @@ public class MyUI extends UI {
 
         @Override
         public boolean beforeViewChange(ViewChangeEvent event) {
-            // popups are not tied to the views, which is a shame, so we have to close them before moving on
-            getWindows().forEach(Window::close);
-
             boolean goingToLoginView = LoginView.VIEW_NAME.equals(event.getViewName());
             boolean goingToAdminView = AdminView.VIEW_NAME.equals(event.getViewName());
 
