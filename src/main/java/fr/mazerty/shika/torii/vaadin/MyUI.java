@@ -1,9 +1,6 @@
 package fr.mazerty.shika.torii.vaadin;
 
-import com.vaadin.annotations.PreserveOnRefresh;
-import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
-import com.vaadin.cdi.CDIUI;
 import com.vaadin.cdi.CDIViewProvider;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
@@ -16,10 +13,7 @@ import javax.inject.Inject;
 /**
  * Custom {@link UI}, entrypoint of the application
  */
-@CDIUI("")
 @Title("Torii")
-@Theme("mytheme")
-@PreserveOnRefresh
 public class MyUI extends ViewUI {
 
     @Inject
