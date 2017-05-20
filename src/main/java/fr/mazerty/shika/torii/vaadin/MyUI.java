@@ -5,11 +5,10 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.cdi.CDIUI;
 import com.vaadin.cdi.CDIViewProvider;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
-import fr.mazerty.shika.ishi.vaadin.WindowCloserViewChangeListener;
+import fr.mazerty.shika.ishi.vaadin.ViewUI;
 import fr.mazerty.shika.torii.cdi.Session;
 
 import javax.inject.Inject;
@@ -21,7 +20,7 @@ import javax.inject.Inject;
 @Title("Torii")
 @Theme("mytheme")
 @PreserveOnRefresh
-public class MyUI extends UI {
+public class MyUI extends ViewUI {
 
     @Inject
     private CDIViewProvider cdiViewProvider;
@@ -33,10 +32,9 @@ public class MyUI extends UI {
      */
     @Override
     protected void init(VaadinRequest vaadinRequest) {
-        // defines that the application consists of a set of annotated views you can access through the ui's navigator
-        Navigator navigator = new Navigator(this, this);
+        super.init(vaadinRequest);
+
         navigator.addProvider(cdiViewProvider);
-        navigator.addViewChangeListener(new WindowCloserViewChangeListener());
         navigator.addViewChangeListener(new MyViewChangeListener());
 
         navigator.navigateTo(LoginView.VIEW_NAME);
@@ -61,7 +59,7 @@ public class MyUI extends UI {
                 return true;
             } else {
                 // any other attempt is forbidden and redirects to the login view
-                getNavigator().navigateTo(LoginView.VIEW_NAME);
+                navigator.navigateTo(LoginView.VIEW_NAME);
                 return false;
             }
         }
