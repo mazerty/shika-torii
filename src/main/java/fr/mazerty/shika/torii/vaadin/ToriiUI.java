@@ -3,30 +3,27 @@ package fr.mazerty.shika.torii.vaadin;
 import com.vaadin.annotations.Title;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
-import com.vaadin.ui.UI;
 import fr.mazerty.shika.ishi.vaadin.MyUI;
 import fr.mazerty.shika.torii.cdi.Session;
 
 import javax.inject.Inject;
 
-/**
- * Custom {@link UI}, entrypoint of the application
- */
 @Title("Torii")
 public class ToriiUI extends MyUI {
 
     @Inject
     private Session session;
 
-    /**
-     * Entrypoint method of the application
-     */
     @Override
     protected void init(VaadinRequest vaadinRequest) {
         super.init(vaadinRequest);
 
         navigator.addViewChangeListener(new MyViewChangeListener());
-        navigator.navigateTo(LoginView.VIEW_NAME);
+    }
+
+    @Override
+    protected String getDefaultView() {
+        return LoginView.VIEW_NAME;
     }
 
     /**
