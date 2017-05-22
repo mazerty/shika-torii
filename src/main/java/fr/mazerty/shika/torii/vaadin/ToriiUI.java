@@ -4,7 +4,7 @@ import com.vaadin.annotations.Title;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
-import fr.mazerty.shika.ishi.vaadin.ViewUI;
+import fr.mazerty.shika.ishi.vaadin.MyUI;
 import fr.mazerty.shika.torii.cdi.Session;
 
 import javax.inject.Inject;
@@ -13,7 +13,7 @@ import javax.inject.Inject;
  * Custom {@link UI}, entrypoint of the application
  */
 @Title("Torii")
-public class MyUI extends ViewUI {
+public class ToriiUI extends MyUI {
 
     @Inject
     private Session session;
