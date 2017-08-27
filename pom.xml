@@ -7,18 +7,36 @@
     <parent>
         <groupId>fr.mazerty</groupId>
         <artifactId>core</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>shika-torii</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <description>
-        Vaadin-based suite of day-to-day applications.
-        Project's name comes from "torii" meaning "gate" in Japanese, and "shika" meaning "deer", mascot of the Vaadin
-        company.
-    </description>
+    <version>current</version>
 
     <packaging>war</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Vaadin-based suite of day-to-day applications</description>
+    <url>https://github.com/mazerty/shika-torii</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>mazerty</id>
+            <name>Thomas JOUANNOT</name>
+            <email>mazerty@gmail.com</email>
+            <url>https://github.com/mazerty</url>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/mazerty/shika-torii.git</connection>
+        <developerConnection>scm:git:git@github.com:mazerty/shika-torii.git</developerConnection>
+        <url>https://github.com/mazerty/shika-torii</url>
+    </scm>
 
     <profiles>
         <profile>
@@ -40,9 +58,9 @@
     </profiles>
 
     <properties>
-        <shika.kami.version>1.0.0-SNAPSHOT</shika.kami.version>
-        <shika.ishi.version>1.0.0-SNAPSHOT</shika.ishi.version>
-        <arquillian.version>1.0.0-SNAPSHOT</arquillian.version>
+        <shika.kami.version>1.0.0</shika.kami.version>
+        <shika.ishi.version>1.0.0</shika.ishi.version>
+        <arquillian.version>1.0.0</arquillian.version>
 
         <database.host>postgresql</database.host>
         <database.url>jdbc:postgresql://${database.host}:5432/postgres</database.url>
