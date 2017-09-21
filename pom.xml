@@ -10,14 +10,14 @@
         <version>1.0.1</version>
     </parent>
 
-    <artifactId>shika-torii</artifactId>
+    <artifactId>torii</artifactId>
     <version>current</version>
 
     <packaging>war</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Vaadin-based suite of day-to-day applications</description>
-    <url>https://github.com/mazerty/shika-torii</url>
+    <url>https://github.com/mazerty/torii</url>
     <licenses>
         <license>
             <name>MIT License</name>
@@ -33,9 +33,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:https://github.com/mazerty/shika-torii.git</connection>
-        <developerConnection>scm:git:git@github.com:mazerty/shika-torii.git</developerConnection>
-        <url>https://github.com/mazerty/shika-torii</url>
+        <connection>scm:git:https://github.com/mazerty/torii.git</connection>
+        <developerConnection>scm:git:git@github.com:mazerty/torii.git</developerConnection>
+        <url>https://github.com/mazerty/torii</url>
     </scm>
 
     <profiles>
