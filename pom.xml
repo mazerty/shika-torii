@@ -52,7 +52,7 @@
             <id>jooq-codegen-torii</id>
             <properties>
                 <input.schema>torii</input.schema>
-                <package.name>fr.mazerty.shika.torii.dao.jooq</package.name>
+                <package.name>fr.mazerty.torii.dao.jooq</package.name>
             </properties>
         </profile>
     </profiles>
