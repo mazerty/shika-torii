@@ -146,24 +146,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.wildfly.plugins</groupId>
-                <artifactId>wildfly-maven-plugin</artifactId>
-                <configuration>
-                    <hostname>${wildfly.hostname}</hostname>
-                    <username>${wildfly.username}</username>
-                    <password>${wildfly.password}</password>
-                    <name>torii.war</name><!-- so that the deployed url ends in /torii -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>deploy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <!-- flyway doesn't allow to update two different databases with the same files in a single run
                      so we have to run the plugin goals twice with different profiles -->
                 <groupId>org.flywaydb</groupId>
@@ -182,6 +164,24 @@
                         <phase>install</phase>
                         <goals>
                             <goal>migrate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <configuration>
+                    <hostname>${wildfly.hostname}</hostname>
+                    <username>${wildfly.username}</username>
+                    <password>${wildfly.password}</password>
+                    <name>torii.war</name><!-- so that the deployed url ends in /torii -->
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
                         </goals>
                     </execution>
                 </executions>
