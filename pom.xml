@@ -154,6 +154,14 @@
                     <password>${wildfly.password}</password>
                     <name>torii.war</name><!-- so that the deployed url ends in /torii -->
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <!-- flyway doesn't allow to update two different databases with the same files in a single run
@@ -169,6 +177,14 @@
                         <location>filesystem:src/main/sql</location>
                     </locations>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>migrate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <!-- this plugin is to be called during development only
