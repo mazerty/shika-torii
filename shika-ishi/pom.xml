@@ -7,11 +7,10 @@
     <parent>
         <groupId>fr.mazerty</groupId>
         <artifactId>core</artifactId>
-        <version>1.0.1</version>
+        <version>current</version>
     </parent>
 
     <artifactId>shika-ishi</artifactId>
-    <version>1.0.0</version>
 
     <packaging>jar</packaging>
 

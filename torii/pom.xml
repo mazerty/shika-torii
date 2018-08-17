@@ -7,11 +7,10 @@
     <parent>
         <groupId>fr.mazerty</groupId>
         <artifactId>core</artifactId>
-        <version>1.0.1</version>
+        <version>current</version>
     </parent>
 
     <artifactId>torii</artifactId>
-    <version>current</version>
 
     <packaging>war</packaging>
 
@@ -58,9 +57,9 @@
     </profiles>
 
     <properties>
-        <shika.kami.version>1.0.0</shika.kami.version>
-        <shika.ishi.version>1.0.0</shika.ishi.version>
-        <arquillian.version>1.0.0</arquillian.version>
+        <shika.kami.version>current</shika.kami.version>
+        <shika.ishi.version>current</shika.ishi.version>
+        <arquillian.version>current</arquillian.version>
 
         <database.host>postgresql</database.host>
         <database.url>jdbc:postgresql://${database.host}:5432/postgres</database.url>
