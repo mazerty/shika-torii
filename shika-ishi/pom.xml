@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>fr.mazerty</groupId>
+        <artifactId>core</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <artifactId>shika-ishi</artifactId>
+    <version>1.0.0</version>
+
+    <packaging>jar</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Useful classes for Vaadin-based applications</description>
+    <url>https://github.com/mazerty/shika-torii</url>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>mazerty</id>
+            <name>Thomas JOUANNOT</name>
+            <email>mazerty@gmail.com</email>
+            <url>https://github.com/mazerty</url>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/mazerty/shika-torii.git</connection>
+        <developerConnection>scm:git:git@github.com:mazerty/shika-torii.git</developerConnection>
+        <url>https://github.com/mazerty/shika-torii</url>
+    </scm>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-cdi</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
