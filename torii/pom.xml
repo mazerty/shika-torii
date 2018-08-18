@@ -37,23 +37,12 @@
         <url>https://github.com/mazerty/torii</url>
     </scm>
 
-    <profiles>
-        <profile>
-            <!-- in a development/test environment, activate this profile to interact with the test database instead of the regular one -->
-            <id>database-test</id>
-            <properties>
-                <database.host>postgresqltest</database.host>
-            </properties>
-        </profile>
-    </profiles>
-
     <properties>
         <shika.kami.version>current</shika.kami.version>
         <shika.ishi.version>current</shika.ishi.version>
         <arquillian.version>current</arquillian.version>
 
-        <database.host>postgresql</database.host>
-        <database.url>jdbc:postgresql://${database.host}:5432/postgres</database.url>
+        <database.url>jdbc:postgresql://postgresql:5432/postgres</database.url>
         <database.username>postgres</database.username>
 
         <wildfly.hostname>wildfly</wildfly.hostname>
