@@ -45,15 +45,6 @@
                 <database.host>postgresqltest</database.host>
             </properties>
         </profile>
-
-        <!-- these profiles are used for jooq code generation, linking a database schema with a target java package for the generated code -->
-        <profile>
-            <id>jooq-codegen-torii</id>
-            <properties>
-                <input.schema>torii</input.schema>
-                <package.name>fr.mazerty.torii.dao.jooq</package.name>
-            </properties>
-        </profile>
     </profiles>
 
     <properties>
@@ -183,13 +174,13 @@
                     </jdbc>
                     <generator>
                         <database>
-                            <name>org.jooq.util.postgres.PostgresDatabase</name>
+                            <name>org.jooq.meta.postgres.PostgresDatabase</name>
                             <includes>.*</includes>
                             <excludes>schema_version</excludes>
-                            <inputSchema>${input.schema}</inputSchema>
+                            <inputSchema>torii</inputSchema>
                         </database>
                         <target>
-                            <packageName>${package.name}</packageName>
+                            <packageName>fr.mazerty.torii.dao.jooq</packageName>
                             <directory>src/main/java</directory>
                         </target>
                     </generator>
