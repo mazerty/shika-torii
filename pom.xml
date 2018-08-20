@@ -36,7 +36,6 @@
     <modules>
         <module>shika-kami</module>
         <module>shika-ishi</module>
-        <module>java-arquillian</module>
         <module>torii</module>
     </modules>
 
@@ -52,10 +51,6 @@
         <jooq.version>3.11.4</jooq.version>
         <commons.lang.version>3.5</commons.lang.version>
         <jbcrypt.version>0.4.1</jbcrypt.version>
-        <junit.version>4.12</junit.version>
-        <arquillian.junit.container.version>1.1.13.Final</arquillian.junit.container.version>
-        <wildfly.arquillian.container.remote.version>2.0.2.Final</wildfly.arquillian.container.remote.version>
-        <shrinkwrap.version>2.2.6</shrinkwrap.version>
         <assertj.version>3.7.0</assertj.version>
         <aws.java.sdk.version>1.11.128</aws.java.sdk.version>
 
@@ -114,27 +109,6 @@
                 <groupId>de.svenkubiak</groupId>
                 <artifactId>jBCrypt</artifactId>
                 <version>${jbcrypt.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junit.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.arquillian.junit</groupId>
-                <artifactId>arquillian-junit-container</artifactId>
-                <version>${arquillian.junit.container.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.wildfly.arquillian</groupId>
-                <artifactId>wildfly-arquillian-container-remote</artifactId>
-                <version>${wildfly.arquillian.container.remote.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.shrinkwrap.resolver</groupId>
-                <artifactId>shrinkwrap-resolver-depchain</artifactId>
-                <version>${shrinkwrap.version}</version>
-                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.assertj</groupId>

@@ -40,7 +40,6 @@
     <properties>
         <shika.kami.version>current</shika.kami.version>
         <shika.ishi.version>current</shika.ishi.version>
-        <arquillian.version>current</arquillian.version>
 
         <database.url>jdbc:postgresql://postgresql:5432/postgres</database.url>
         <database.username>postgres</database.username>
@@ -61,12 +60,6 @@
             <groupId>fr.mazerty</groupId>
             <artifactId>shika-ishi</artifactId>
             <version>${shika.ishi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>fr.mazerty</groupId>
-            <artifactId>arquillian</artifactId>
-            <version>${arquillian.version}</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
