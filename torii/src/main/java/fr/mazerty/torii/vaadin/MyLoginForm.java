@@ -2,9 +2,9 @@ package fr.mazerty.torii.vaadin;
 
 import com.vaadin.data.Binder;
 import com.vaadin.ui.*;
-import fr.mazerty.shika.ishi.vaadin.PrimaryButton;
 import fr.mazerty.torii.bean.User;
 import fr.mazerty.torii.cdi.LanguageProxy;
+import org.vaadin.viritin.button.PrimaryButton;
 
 /**
  * Custom bean-backed {@link LoginForm}

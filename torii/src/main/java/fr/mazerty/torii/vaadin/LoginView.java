@@ -4,7 +4,6 @@ import com.vaadin.cdi.CDIView;
 import com.vaadin.data.HasValue;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.*;
-import fr.mazerty.shika.ishi.vaadin.MyView;
 import fr.mazerty.torii.bean.User;
 import fr.mazerty.torii.cdi.Language;
 import fr.mazerty.torii.cdi.LanguageProxy;

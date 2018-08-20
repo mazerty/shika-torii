@@ -2,7 +2,6 @@ package fr.mazerty.torii.vaadin;
 
 import com.vaadin.cdi.CDIView;
 import com.vaadin.ui.Button;
-import fr.mazerty.shika.ishi.vaadin.MyView;
 
 import javax.annotation.PostConstruct;
 
