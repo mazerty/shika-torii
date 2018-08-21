@@ -11,12 +11,13 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-public class JooqProducer {
+@ApplicationScoped
+public class JooqContextProducer {
 
     private static final String DATASOURCE_JNDI_NAME = "java:/comp/env/jdbc/postgresql";
 
     /**
-     * @return jooq context to operate the database
+     * @return Jooq context to operate the database
      */
     @ApplicationScoped
     @Produces
