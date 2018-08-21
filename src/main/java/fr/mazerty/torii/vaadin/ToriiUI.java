@@ -15,7 +15,7 @@ import fr.mazerty.torii.cdi.Session;
 import javax.inject.Inject;
 
 @CDIUI("")
-@Theme("mytheme")
+@Theme("valo")
 @PreserveOnRefresh
 @Title("Torii")
 public class ToriiUI extends UI {
