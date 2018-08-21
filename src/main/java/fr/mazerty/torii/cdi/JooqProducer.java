@@ -22,7 +22,7 @@ public class JooqProducer {
     @Produces
     public DSLContext produce() throws NamingException {
         return DSL.using(new DefaultConfiguration()
-                .set(SQLDialect.POSTGRES_9_5)
+                .set(SQLDialect.POSTGRES_10)
                 .set((DataSource) new InitialContext().lookup(DATASOURCE_JNDI_NAME)));
     }
 
